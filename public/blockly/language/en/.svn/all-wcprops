@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/301/trunk/language/en
+END
+text.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/286/trunk/language/en/text.js
+END
+_messages.js
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/301/trunk/language/en/_messages.js
+END
+math.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/286/trunk/language/en/math.js
+END
+control.js
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/258/trunk/language/en/control.js
+END

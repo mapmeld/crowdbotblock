@@ -51,8 +51,8 @@ var init = exports.init = function (config) {
   
   // Routes
 
-  app.get('/', middleware.require_auth_browser, routes.index);
-  app.post('/add_comment',middleware.require_auth_browser, routes.add_comment);
+  app.get('/auth', middleware.require_auth_browser, routes.index);
+  app.post('/auth/add_comment',middleware.require_auth_browser, routes.add_comment);
   
   // redirect all non-existent URLs to doesnotexist
   app.get('*', function onNonexistentURL(req,res) {
