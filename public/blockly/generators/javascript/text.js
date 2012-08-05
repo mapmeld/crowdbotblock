@@ -199,6 +199,10 @@ Blockly.JavaScript.text_test = function() {
   var argument0 = Blockly.JavaScript.valueToCode(this, 'TEXT', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'window.alert(' + argument0 + ');\n';
 };
+Blockly.JavaScript.text_strobe = function(){
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'window.alert(' + (argument0+1) + ');\n';
+};
 
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.

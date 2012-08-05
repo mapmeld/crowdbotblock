@@ -308,6 +308,18 @@ Blockly.Language.text_test = {
     this.setTooltip("TestCode");
   }
 };
+Blockly.Language.text_strobe = {
+  category: Blockly.LANG_CATEGORY_TEXT,
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(190);
+    this.appendTitle("Strobe");
+    this.appendInput('\u00F7', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Strobe");
+  }
+};
 
 Blockly.Language.text_prompt = {
   // Prompt function.
