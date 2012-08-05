@@ -201,15 +201,15 @@ Blockly.JavaScript.text_test = function() {
 };
 Blockly.JavaScript.text_strobe = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  return '(new five.Led(' + (argument0+1) + ')).strobe();\n';
+  return '(new five.Led(' + (argument0*1) + ')).strobe();\n';
 };
 Blockly.JavaScript.text_on = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  return '(new five.Led(' + (argument0+1) + ')).on();\n';
+  return '(new five.Led(' + (argument0*1) + ')).on();\n';
 };
 Blockly.JavaScript.text_off = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  return '(new five.Led(' + (argument0+1) + ')).off();\n';
+  return '(new five.Led(' + (argument0*1) + ')).off();\n';
 };
 
 Blockly.JavaScript.text_prompt = function() {
