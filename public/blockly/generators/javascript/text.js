@@ -222,6 +222,14 @@ Blockly.JavaScript.wait = function() {
   var branch0 = Blockly.JavaScript.statementToCode(this, 'DO');
   return 'board.wait(' + (argument0*1) + ', function(){\n' + branch0 + '});\n';
 };
+// Button callbacks
+Blockly.JavaScript.button = function() {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var branch0 = Blockly.JavaScript.statementToCode(this, 'HIT');
+  var branch1 = Blockly.JavaScript.statementToCode(this, 'RELEASE');
+  argument0 *= 1;
+  return 'var bumper' + argument0 + ' = new five.Button(' + argument0 + ');\nbumper' + argument0 + '.on("hit", function(){' + branch0 + '\n}).on("release", function(){\n' + branch1 + '\n});';
+};
 
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.

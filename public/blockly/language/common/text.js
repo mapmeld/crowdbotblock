@@ -372,6 +372,21 @@ Blockly.Language.wait = {
     this.setTooltip("Wait");
   }
 };
+// button / bumper init and callback
+Blockly.Language.button = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_CONTROLS_WHILEUNTIL_HELPURL,
+  init: function() {
+    this.setColour(80);
+    this.appendTitle("Button");
+    this.appendInput('@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendInput('Hit:', Blockly.NEXT_STATEMENT, 'HIT');
+    this.appendInput('Release:', Blockly.NEXT_STATEMENT, 'RELEASE');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Button");
+  }
+};
 
 Blockly.Language.text_prompt = {
   // Prompt function.
