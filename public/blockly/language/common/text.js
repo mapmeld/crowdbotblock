@@ -364,7 +364,7 @@ Blockly.Language.servo_move = {
     this.setColour(250);
     this.appendTitle("Move");
     this.appendInput('Servo@', Blockly.INPUT_VALUE, 'NUM', Number);
-    this.appendInput('to', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendInput('to', Blockly.INPUT_VALUE, 'NUM2', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Move Servo");

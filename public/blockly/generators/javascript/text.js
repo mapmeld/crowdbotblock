@@ -213,7 +213,7 @@ Blockly.JavaScript.servo_init = function(){
 };
 Blockly.JavaScript.servo_move = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  var argument1 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var argument1 = Blockly.JavaScript.valueToCode(this, 'NUM2', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
 // Wait callback
