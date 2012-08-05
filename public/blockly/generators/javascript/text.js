@@ -228,7 +228,7 @@ Blockly.JavaScript.button = function() {
   var branch0 = Blockly.JavaScript.statementToCode(this, 'HIT');
   var branch1 = Blockly.JavaScript.statementToCode(this, 'RELEASE');
   argument0 *= 1;
-  return 'var bumper' + argument0 + ' = new five.Button(' + argument0 + ');\nbumper' + argument0 + '.on("hit", function(){' + branch0 + '\n}).on("release", function(){\n' + branch1 + '\n});';
+  return 'var bumper' + argument0 + ' = new five.Button(' + argument0 + ');\nbumper' + argument0 + '.on("hit", function(){\n' + branch0 + '}).on("release", function(){\n' + branch1 + '\n});';
 };
 
 Blockly.JavaScript.text_prompt = function() {
