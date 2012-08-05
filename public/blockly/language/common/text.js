@@ -314,7 +314,7 @@ Blockly.Language.text_strobe = {
   init: function(){
     this.setColour(190);
     this.appendTitle("Strobe");
-    this.appendInput('\u00F7', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Strobe");
