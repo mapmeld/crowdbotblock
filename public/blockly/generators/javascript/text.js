@@ -194,6 +194,12 @@ Blockly.JavaScript.text_print = function() {
   return 'window.alert(' + argument0 + ');\n';
 };
 
+// attempt CrowdBotBlock code
+Blockly.JavaScript.text_test = function() {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'TEXT', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'window.alert(' + argument0 + ');\n';
+};
+
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.
   var msg = Blockly.JavaScript.quote_(this.getTitleValue('TEXT'));
