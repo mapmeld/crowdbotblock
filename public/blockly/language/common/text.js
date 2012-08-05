@@ -295,6 +295,20 @@ Blockly.Language.text_print = {
   }
 };
 
+// text test for CrowdBotBlock
+Blockly.Language.text_test = {
+  category: Blockly.LANG_CATEGORY_TEXT,
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(160);
+    this.appendTitle("TestCode");
+    this.appendInput('', Blockly.INPUT_VALUE, 'TEXT', null);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("TestCode");
+  }
+};
+
 Blockly.Language.text_prompt = {
   // Prompt function.
   category: Blockly.LANG_CATEGORY_TEXT,
