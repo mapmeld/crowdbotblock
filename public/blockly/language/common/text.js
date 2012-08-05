@@ -371,7 +371,7 @@ Blockly.Language.servo_move = {
   }
 };
 // wait function
-Blockly.Language.controls_whileUntil = {
+Blockly.Language.wait = {
   category: "Arduino",
   helpUrl: Blockly.LANG_CONTROLS_WHILEUNTIL_HELPURL,
   init: function() {
