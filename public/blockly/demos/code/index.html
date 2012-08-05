@@ -322,11 +322,13 @@ function discard() {
             <td class="tabmin">&nbsp;</td>
             <td id="tab_xml" class="taboff" onclick="tabClick(this.id)">XML</td>
             <td class="tabmax">
-              <button onclick="discard()">Discard</button>
-              <button onclick="save()">Save XML</button>
-              <button id="fakeload">Load XML</button>
+              <button onclick="discard()">Clear</button>
+              <button onclick="save()">Save to XML</button>
+              <button id="fakeload">Load from XML</button>
               <input type="file" id="load" style="display: none;"/>
+              <!--
               <button class="launch" onclick="runJS()">Run Program</button>
+              -->
             </td>
           </tr>
         </table>
