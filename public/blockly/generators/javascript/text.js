@@ -201,7 +201,11 @@ Blockly.JavaScript.text_test = function() {
 };
 Blockly.JavaScript.text_strobe = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  return 'window.alert(' + (argument0+1) + ');\n';
+  return '(new five.Led(' + (argument0+1) + ')).strobe();\n';
+};
+Blockly.JavaScript.text_onoff = function(){
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'TEXT', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return '(new five.Led(' + (argument0+1) + ')).on();\n';
 };
 
 Blockly.JavaScript.text_prompt = function() {

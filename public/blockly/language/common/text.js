@@ -297,10 +297,10 @@ Blockly.Language.text_print = {
 
 // text test for CrowdBotBlock
 Blockly.Language.text_test = {
-  category: Blockly.LANG_CATEGORY_TEXT,
+  category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
-    this.setColour(160);
+    this.setColour(250);
     this.appendTitle("TestCode");
     this.appendInput('', Blockly.INPUT_VALUE, 'TEXT', null);
     this.setPreviousStatement(true);
@@ -309,15 +309,27 @@ Blockly.Language.text_test = {
   }
 };
 Blockly.Language.text_strobe = {
-  category: Blockly.LANG_CATEGORY_TEXT,
+  category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
-    this.setColour(190);
+    this.setColour(250);
     this.appendTitle("Strobe");
     this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Strobe");
+  }
+};
+Blockly.Language.text_onoff = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("OnOff");
+    this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("OnOff");
   }
 };
 
