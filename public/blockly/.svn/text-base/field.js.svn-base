@@ -179,6 +179,7 @@ Blockly.Field.prototype.setText = function(text) {
   if (this.sourceBlock_ && this.sourceBlock_.rendered) {
     this.sourceBlock_.render();
     this.sourceBlock_.bumpNeighbours_();
+    this.sourceBlock_.workspace.fireChangeEvent();
   }
 };
 
@@ -206,7 +207,7 @@ Blockly.Field.prototype.setValue = function(text) {
  * @private
  */
 Blockly.Field.prototype.onMouseUp_ = function(e) {
-  if (e.button == 2) {
+  if (Blockly.isRightButton(e)) {
     // Right-click.
     return;
   } else if (Blockly.Block.dragMode_ == 2) {

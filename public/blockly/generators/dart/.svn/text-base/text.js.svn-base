@@ -20,8 +20,6 @@
 /**
  * @fileoverview Generating Dart for text blocks.
  * @author fraser@google.com (Neil Fraser)
- * Due to the frequency of long strings, the 80-column wrap rule need not apply
- * to language files.
  */
 
 Blockly.Dart = Blockly.Generator.get('Dart');
@@ -42,18 +40,11 @@ Blockly.Dart.text_join = function() {
         Blockly.Dart.ORDER_UNARY_POSTFIX) || '\'\'';
     code = argument0 + '.toString()';
     return [code, Blockly.Dart.ORDER_UNARY_POSTFIX];
-  } else if (this.itemCount_ == 2) {
-    var argument0 = Blockly.Dart.valueToCode(this, 'ADD0',
-        Blockly.Dart.ORDER_NONE) || '\'\'';
-    var argument1 = Blockly.Dart.valueToCode(this, 'ADD0',
-        Blockly.Dart.ORDER_NONE) || '\'\'';
-    code = argument0 + '.toString() + ' + argument1 + '.toString()';
-    return [code, Blockly.Dart.ORDER_ADDITIVE];
   } else {
     code = [];
     code[0] = 'new StringBuffer(' + (Blockly.Dart.valueToCode(this, 'ADD0',
         Blockly.Dart.ORDER_NONE) || '\'\'') + ')';
-    for (n = 1; n < this.itemCount_; n++) {
+    for (var n = 1; n < this.itemCount_; n++) {
       code[n] = '.add(' + (Blockly.Dart.valueToCode(this, 'ADD' + n,
           Blockly.Dart.ORDER_NONE) || '\'\'') + ')';
     }
@@ -88,8 +79,8 @@ Blockly.Dart.text_endString = function() {
     code = argument1 + '.substring(0, ' + argument0 + ')';
   } else {
     if (!Blockly.Dart.definitions_['text_tailString']) {
-      var functionName = Blockly.Dart.variableDB_.getDistinctName('text_tailString',
-          Blockly.Generator.NAME_TYPE);
+      var functionName = Blockly.Dart.variableDB_.getDistinctName(
+          'text_tailString', Blockly.Generator.NAME_TYPE);
       Blockly.Dart.text_endString.text_tailString = functionName;
       var func = [];
       func.push('String ' + functionName + '(n, myString) {');
@@ -110,7 +101,8 @@ Blockly.Dart.text_endString = function() {
 
 Blockly.Dart.text_indexOf = function() {
   // Search the text for a substring.
-  var operator = this.getTitleValue('END') == 'FIRST' ? 'indexOf' : 'lastIndexOf';
+  var operator = this.getTitleValue('END') == 'FIRST' ?
+      'indexOf' : 'lastIndexOf';
   var argument0 = Blockly.Dart.valueToCode(this, 'FIND',
       Blockly.Dart.ORDER_NONE) || '\'\'';
   var argument1 = Blockly.Dart.valueToCode(this, 'VALUE',
@@ -150,8 +142,8 @@ Blockly.Dart.text_changeCase = function() {
   } else {
     if (!Blockly.Dart.definitions_['toTitleCase']) {
       // Title case is not a native Dart function.  Define one.
-      var functionName = Blockly.Dart.variableDB_.getDistinctName('text_toTitleCase',
-          Blockly.Generator.NAME_TYPE);
+      var functionName = Blockly.Dart.variableDB_.getDistinctName(
+          'text_toTitleCase', Blockly.Generator.NAME_TYPE);
       Blockly.Dart.text_changeCase.toTitleCase = functionName;
       var func = [];
       func.push('String ' + functionName + '(str) {');

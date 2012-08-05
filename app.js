@@ -36,6 +36,8 @@ var init = exports.init = function (config) {
       cookie: {maxAge: HOUR_IN_MILLISECONDS}}));
     app.use(mongoose_auth.middleware());
     app.use(express.static(__dirname + '/public'));
+    //app.use(express.static(__dirname + '/public/blockly'));
+    //app.use(express.static(__dirname + '/public/blockly/demos'));
     app.use(app.router);
 
   });

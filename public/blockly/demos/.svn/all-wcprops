@@ -1,29 +1,23 @@
 K 25
 svn:wc:ra_dav:version-url
 V 29
-/svn/!svn/ver/300/trunk/demos
-END
-svn_info.txt
-K 25
-svn:wc:ra_dav:version-url
-V 42
-/svn/!svn/ver/278/trunk/demos/svn_info.txt
+/svn/!svn/ver/379/trunk/demos
 END
 blockly_uncompressed.js
 K 25
 svn:wc:ra_dav:version-url
 V 53
-/svn/!svn/ver/285/trunk/demos/blockly_uncompressed.js
+/svn/!svn/ver/372/trunk/demos/blockly_uncompressed.js
 END
 index.html
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/svn/!svn/ver/268/trunk/demos/index.html
+/svn/!svn/ver/332/trunk/demos/index.html
 END
 blockly_compressed.js
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/298/trunk/demos/blockly_compressed.js
+/svn/!svn/ver/379/trunk/demos/blockly_compressed.js
 END

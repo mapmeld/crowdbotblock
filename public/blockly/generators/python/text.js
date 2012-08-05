@@ -20,8 +20,6 @@
 /**
  * @fileoverview Generating Python for text blocks.
  * @author fraser@google.com (Neil Fraser)
- * Due to the frequency of long strings, the 80-column wrap rule need not apply
- * to language files.
  */
 
 Blockly.Python = Blockly.Generator.get('Python');
@@ -52,13 +50,14 @@ Blockly.Python.text_join = function() {
     return [code, Blockly.Python.ORDER_UNARY_SIGN];
   } else {
     var code = [];
-    for (n = 0; n < this.itemCount_; n++) {
+    for (var n = 0; n < this.itemCount_; n++) {
       code[n] = Blockly.Python.valueToCode(this, 'ADD' + n,
           Blockly.Python.ORDER_NONE) || '\'\'';
     }
     var tempVar = Blockly.Python.variableDB_.getDistinctName('temp_value',
         Blockly.Variables.NAME_TYPE);
-    code = '\'\'.join([str(' + tempVar + ') for ' + tempVar + ' in [' + code.join(', ') + ']])';
+    code = '\'\'.join([str(' + tempVar + ') for ' + tempVar + ' in [' +
+        code.join(', ') + ']])';
     return [code, Blockly.Python.ORDER_FUNCTION_CALL];
   }
 };
@@ -80,8 +79,8 @@ Blockly.Python.text_isEmpty = function() {
 
 Blockly.Python.text_endString = function() {
   // Return a leading or trailing substring.
-  // Do we need to prevent 'List index out of range' ERROR by checking
-  // if argument 0 > len(argument1)? Or will ALL error be handled systematically?
+  // Do we need to prevent 'List index out of range' ERROR by checking if
+  // argument 0 > len(argument1)? Or will ALL error be handled systematically?
   var first = this.getTitleValue('END') == 'FIRST';
   var argument0 = Blockly.Python.valueToCode(this, 'NUM',
       Blockly.Python.ORDER_NONE) || '1';

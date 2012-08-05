@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 34
-/svn/!svn/ver/299/trunk/demos/maze
+/svn/!svn/ver/370/trunk/demos/maze
 END
 map.png
 K 25
@@ -19,7 +19,7 @@ maze.js
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/svn/!svn/ver/278/trunk/demos/maze/maze.js
+/svn/!svn/ver/370/trunk/demos/maze/maze.js
 END
 pegman.png
 K 25
@@ -31,7 +31,7 @@ index.html
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/278/trunk/demos/maze/index.html
+/svn/!svn/ver/336/trunk/demos/maze/index.html
 END
 map.svg
 K 25
@@ -43,7 +43,7 @@ frame.html
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/299/trunk/demos/maze/frame.html
+/svn/!svn/ver/352/trunk/demos/maze/frame.html
 END
 1x1.gif
 K 25

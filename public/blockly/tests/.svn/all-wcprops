@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 29
-/svn/!svn/ver/296/trunk/tests
+/svn/!svn/ver/372/trunk/tests
 END
 generator_test.js
 K 25
@@ -25,7 +25,7 @@ playground.html
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/296/trunk/tests/playground.html
+/svn/!svn/ver/372/trunk/tests/playground.html
 END
 blockly_test.js
 K 25

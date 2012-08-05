@@ -32,11 +32,13 @@ Blockly.BlockSvg = function(block) {
   // Create core elements for the block.
   this.svgGroup_ = Blockly.createSvgElement('g', {}, null);
   this.svgPathDark_ = Blockly.createSvgElement('path',
-      {transform: 'translate(1, 1)'}, this.svgGroup_);
-  this.svgPath_ = Blockly.createSvgElement('path', {}, this.svgGroup_);
-  this.svgPathLight_ = Blockly.createSvgElement('path',
-      {'fill': 'none', 'stroke-width': 2, 'stroke-linecap': 'round'},
+      {'class': 'blocklyPathDark', transform: 'translate(1, 1)'},
       this.svgGroup_);
+  this.svgPath_ = Blockly.createSvgElement('path', {'class': 'blocklyPath'},
+      this.svgGroup_);
+  this.svgPathLight_ = Blockly.createSvgElement('path',
+      {'class': 'blocklyPathLight', 'fill': 'none', 'stroke-width': 2,
+      'stroke-linecap': 'round'}, this.svgGroup_);
   this.svgPath_.tooltip = this.block_;
   Blockly.Tooltip && Blockly.Tooltip.bindMouseEvents(this.svgPath_);
   if (block.editable) {
@@ -166,11 +168,27 @@ Blockly.BlockSvg.prototype.updateColour = function() {
 };
 
 /**
+ * Enable or disable a block.
+ */
+Blockly.BlockSvg.prototype.updateDisabled = function() {
+  if (this.block_.disabled || this.block_.getInheritedDisabled()) {
+    Blockly.addClass_(this.svgGroup_, 'blocklyDisabled');
+    this.svgPath_.setAttribute('fill', 'url(#blocklyDisabledPattern)');
+  } else {
+    Blockly.removeClass_(this.svgGroup_, 'blocklyDisabled');
+    this.updateColour();
+  }
+  var children = this.block_.getChildren();
+  for (var x = 0, child; child = children[x]; x++) {
+    child.svg_.updateDisabled();
+  }
+};
+
+/**
  * Select this block.  Highlight it visually.
  */
 Blockly.BlockSvg.prototype.addSelect = function() {
-  Blockly.addClass_(this.svgPath_, 'blocklySelected');
-  this.svgPathLight_.setAttribute('display', 'none');
+  Blockly.addClass_(this.svgGroup_, 'blocklySelected');
   // Move the selected block to the top of the stack.
   this.svgGroup_.parentNode.appendChild(this.svgGroup_);
 };
@@ -179,8 +197,7 @@ Blockly.BlockSvg.prototype.addSelect = function() {
  * Unselect this block.  Remove its highlighting.
  */
 Blockly.BlockSvg.prototype.removeSelect = function() {
-  Blockly.removeClass_(this.svgPath_, 'blocklySelected');
-  this.svgPathLight_.setAttribute('display', 'block');
+  Blockly.removeClass_(this.svgGroup_, 'blocklySelected');
 };
 
 /**
@@ -188,18 +205,14 @@ Blockly.BlockSvg.prototype.removeSelect = function() {
  * Also disables the highlights/shadows to improve performance.
  */
 Blockly.BlockSvg.prototype.addDragging = function() {
-  Blockly.addClass_(this.svgPath_, 'blocklyDragging');
-  Blockly.addClass_(this.svgPathLight_, 'blocklyDragging');
-  this.svgPathDark_.style.display = 'none';
+  Blockly.addClass_(this.svgGroup_, 'blocklyDragging');
 };
 
 /**
  * Removes the dragging class from this block.
  */
 Blockly.BlockSvg.prototype.removeDragging = function() {
-  Blockly.removeClass_(this.svgPath_, 'blocklyDragging');
-  Blockly.removeClass_(this.svgPathLight_, 'blocklyDragging');
-  this.svgPathDark_.style.display = 'block';
+  Blockly.removeClass_(this.svgGroup_, 'blocklyDragging');
 };
 
 /**
@@ -222,7 +235,7 @@ Blockly.BlockSvg.prototype.render = function() {
         break;
       }
       x++;
-    } while (input && input.type == Blockly.LOCAL_VARIABLE)
+    } while (input && input.type == Blockly.LOCAL_VARIABLE);
   }
   var titleX = Blockly.RTL ?
       this.renderTitleRTL_(titleY) : this.renderTitleLTR_(titleY);
@@ -235,7 +248,7 @@ Blockly.BlockSvg.prototype.render = function() {
     parentBlock.render();
   } else {
     // Top-most block.  Fire an event to allow scrollbars to resize.
-    Blockly.fireUiEvent(Blockly.svgDoc, window, 'resize');
+    Blockly.fireUiEvent(window, 'resize');
   }
 };
 
@@ -248,6 +261,13 @@ Blockly.BlockSvg.prototype.render = function() {
 Blockly.BlockSvg.prototype.renderTitleRTL_ = function(titleY) {
   var titleX = -Blockly.BlockSvg.SEP_SPACE_X;
   var iconWidth;
+  // Move the mutator icon into position.
+  if (this.block_.mutator) {
+    iconWidth = this.block_.mutator.renderIcon(titleX);
+    if (iconWidth) {
+      titleX -= iconWidth + Blockly.BlockSvg.SEP_SPACE_X;
+    }
+  }
   // Move the comment icon into position.
   if (this.block_.comment) {
     iconWidth = this.block_.comment.renderIcon(titleX);
@@ -255,9 +275,9 @@ Blockly.BlockSvg.prototype.renderTitleRTL_ = function(titleY) {
       titleX -= iconWidth + Blockly.BlockSvg.SEP_SPACE_X;
     }
   }
-  // Move the mutator icon into position.
-  if (this.block_.mutator) {
-    iconWidth = this.block_.mutator.renderIcon(titleX);
+  // Move the warning icon into position.
+  if (this.block_.warning) {
+    iconWidth = this.block_.warning.renderIcon(titleX);
     if (iconWidth) {
       titleX -= iconWidth + Blockly.BlockSvg.SEP_SPACE_X;
     }
@@ -290,6 +310,13 @@ Blockly.BlockSvg.prototype.renderTitleRTL_ = function(titleY) {
 Blockly.BlockSvg.prototype.renderTitleLTR_ = function(titleY) {
   var titleX = Blockly.BlockSvg.SEP_SPACE_X;
   var iconWidth;
+  // Move the mutator icon into position.
+  if (this.block_.mutator) {
+    iconWidth = this.block_.mutator.renderIcon(titleX);
+    if (iconWidth) {
+      titleX += iconWidth + Blockly.BlockSvg.SEP_SPACE_X;
+    }
+  }
   // Move the comment icon into position.
   if (this.block_.comment) {
     iconWidth = this.block_.comment.renderIcon(titleX);
@@ -297,9 +324,9 @@ Blockly.BlockSvg.prototype.renderTitleLTR_ = function(titleY) {
       titleX += iconWidth + Blockly.BlockSvg.SEP_SPACE_X;
     }
   }
-  // Move the mutator icon into position.
-  if (this.block_.mutator) {
-    iconWidth = this.block_.mutator.renderIcon(titleX);
+  // Move the warning icon into position.
+  if (this.block_.warning) {
+    iconWidth = this.block_.warning.renderIcon(titleX);
     if (iconWidth) {
       titleX += iconWidth + Blockly.BlockSvg.SEP_SPACE_X;
     }
@@ -397,10 +424,10 @@ Blockly.BlockSvg.prototype.renderCompute_ = function(inputList) {
         /* HACK:
          The current versions of Chrome (16.0) and Safari (5.1) with a common
          root of WebKit 535 has a size reporting bug where the height of a
-         block is 5 pixels too large.  If WebKit browsers start under-sizing
+         block is 3 pixels too large.  If WebKit browsers start under-sizing
          connections to other blocks, then delete this entire hack.
         */
-        bBox.height -= 5;
+        bBox.height -= 3;
       }
       // Subtract one from the height due to the shadow.
       input.renderHeight = Math.max(input.renderHeight, bBox.height - 1);
@@ -618,7 +645,8 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
                            ',' + (cursorY + Blockly.BlockSvg.SEP_SPACE_Y));
           inlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH - input.renderWidth);
           inlineSteps.push(Blockly.BlockSvg.TAB_PATH_DOWN);
-          inlineSteps.push('v', input.renderHeight - Blockly.BlockSvg.TAB_HEIGHT);
+          inlineSteps.push('v', input.renderHeight -
+                                Blockly.BlockSvg.TAB_HEIGHT);
           inlineSteps.push('h', input.renderWidth - Blockly.BlockSvg.TAB_WIDTH);
           inlineSteps.push('z');
           if (Blockly.RTL) {
@@ -642,9 +670,9 @@ Blockly.BlockSvg.prototype.renderDrawRight_ = function(steps, highlightSteps,
             highlightInlineSteps.push('h', Blockly.BlockSvg.TAB_WIDTH -
                                            input.renderWidth);
             highlightInlineSteps.push('M',
-                (cursorX - input.renderWidth - Blockly.BlockSvg.SEP_SPACE_X + 3.8) +
-                ',' + (cursorY + Blockly.BlockSvg.SEP_SPACE_Y +
-                       Blockly.BlockSvg.TAB_HEIGHT - 0.4));
+                (cursorX - input.renderWidth - Blockly.BlockSvg.SEP_SPACE_X +
+                 3.8) + ',' + (cursorY + Blockly.BlockSvg.SEP_SPACE_Y +
+                 Blockly.BlockSvg.TAB_HEIGHT - 0.4));
             highlightInlineSteps.push('l',
                 (Blockly.BlockSvg.TAB_WIDTH * 0.42) + ',-1.8');
           }

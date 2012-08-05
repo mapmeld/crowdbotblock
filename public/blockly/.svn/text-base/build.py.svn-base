@@ -22,6 +22,7 @@ filenames = [
     'blockly.js',
     'block.js',
     'block_svg.js',
+    'bubble.js',
     'comment.js',
     'connection.js',
     'contextmenu.js',
@@ -41,6 +42,7 @@ filenames = [
     'trashcan.js',
     'utils.js',
     'variables.js',
+    'warning.js',
     'workspace.js',
     'xml.js']
 
@@ -140,4 +142,3 @@ def gen_compressed():
 if __name__ == '__main__':
   gen_uncompressed()
   gen_compressed()
-  

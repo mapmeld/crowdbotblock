@@ -20,8 +20,6 @@
 /**
  * @fileoverview Logic blocks for Blockly.
  * @author fraser@google.com (Neil Fraser)
- * Due to the frequency of long strings, the 80-column wrap rule need not apply
- * to language files.
  */
 
 if (!Blockly.Language) Blockly.Language = {};
@@ -31,14 +29,14 @@ Blockly.Language.logic_compare = {
   category: Blockly.LANG_CATEGORY_LOGIC,
   helpUrl: Blockly.LANG_LOGIC_COMPARE_HELPURL,
   init: function() {
-    // Assign 'this' to a variable for use in the closures below.
-    var thisBlock = this;
     this.setColour(120);
     this.setOutput(true, Boolean);
     this.appendInput('', Blockly.INPUT_VALUE, 'A', null);
     var dropdown = new Blockly.FieldDropdown(this.OPERATORS);
     this.appendInput([dropdown, 'OP'], Blockly.INPUT_VALUE, 'B', null);
     this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
     this.setTooltip(function() {
       var op = thisBlock.getTitleValue('OP');
       return Blockly.Language.logic_compare.TOOLTIPS[op];
@@ -68,14 +66,14 @@ Blockly.Language.logic_operation = {
   category: Blockly.LANG_CATEGORY_LOGIC,
   helpUrl: Blockly.LANG_LOGIC_OPERATION_HELPURL,
   init: function() {
-    // Assign 'this' to a variable for use in the closures below.
-    var thisBlock = this;
     this.setColour(120);
     this.setOutput(true, Boolean);
     this.appendInput('', Blockly.INPUT_VALUE, 'A', Boolean);
     var dropdown = new Blockly.FieldDropdown(this.OPERATORS);
     this.appendInput([dropdown, 'OP'], Blockly.INPUT_VALUE, 'B', Boolean);
     this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
     this.setTooltip(function() {
       var op = thisBlock.getTitleValue('OP');
       return Blockly.Language.logic_operation.TOOLTIPS[op];
@@ -83,7 +81,9 @@ Blockly.Language.logic_operation = {
   }
 };
 
-Blockly.Language.logic_operation.OPERATORS = [[Blockly.LANG_LOGIC_OPERATION_AND, 'AND'], [Blockly.LANG_LOGIC_OPERATION_OR, 'OR']];
+Blockly.Language.logic_operation.OPERATORS =
+    [[Blockly.LANG_LOGIC_OPERATION_AND, 'AND'],
+     [Blockly.LANG_LOGIC_OPERATION_OR, 'OR']];
 
 Blockly.Language.logic_operation.TOOLTIPS = {
   AND: Blockly.LANG_LOGIC_OPERATION_TOOLTIP_AND,
@@ -97,7 +97,8 @@ Blockly.Language.logic_negate = {
   init: function() {
     this.setColour(120);
     this.setOutput(true, Boolean);
-    this.appendInput(Blockly.LANG_LOGIC_NEGATE_INPUT_NOT, Blockly.INPUT_VALUE, 'BOOL', Boolean);
+    this.appendInput(Blockly.LANG_LOGIC_NEGATE_INPUT_NOT,
+        Blockly.INPUT_VALUE, 'BOOL', Boolean);
     this.setTooltip(Blockly.LANG_LOGIC_NEGATE_TOOLTIP_1);
   }
 };
@@ -107,8 +108,6 @@ Blockly.Language.logic_boolean = {
   category: Blockly.LANG_CATEGORY_LOGIC,
   helpUrl: Blockly.LANG_LOGIC_BOOLEAN_HELPURL,
   init: function() {
-    // Assign 'this' to a variable for use in the closures below.
-    var thisBlock = this;
     this.setColour(120);
     this.setOutput(true, Boolean);
     var dropdown = new Blockly.FieldDropdown(this.OPERATORS);

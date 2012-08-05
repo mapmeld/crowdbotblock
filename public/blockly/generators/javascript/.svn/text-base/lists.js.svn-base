@@ -20,8 +20,6 @@
 /**
  * @fileoverview Generating JavaScript for list blocks.
  * @author fraser@google.com (Neil Fraser)
- * Due to the frequency of long strings, the 80-column wrap rule need not apply
- * to language files.
  */
 
 Blockly.JavaScript = Blockly.Generator.get('JavaScript');
@@ -34,7 +32,7 @@ Blockly.JavaScript.lists_create_empty = function() {
 Blockly.JavaScript.lists_create_with = function() {
   // Create a list with any number of elements of any type.
   var code = new Array(this.itemCount_);
-  for (n = 0; n < this.itemCount_; n++) {
+  for (var n = 0; n < this.itemCount_; n++) {
     code[n] = Blockly.JavaScript.valueToCode(this, 'ADD' + n,
         Blockly.JavaScript.ORDER_COMMA) || 'null';
   }
@@ -46,8 +44,8 @@ Blockly.JavaScript.lists_repeat = function() {
   // Create a list with one element repeated.
   if (!Blockly.JavaScript.definitions_['lists_repeat']) {
     // Function copied from Closure's goog.array.repeat.
-    var functionName = Blockly.JavaScript.variableDB_.getDistinctName('lists_repeat',
-        Blockly.Generator.NAME_TYPE);
+    var functionName = Blockly.JavaScript.variableDB_.getDistinctName(
+        'lists_repeat', Blockly.Generator.NAME_TYPE);
     Blockly.JavaScript.lists_repeat.repeat = functionName;
     var func = [];
     func.push('function ' + functionName + '(value, n) {');

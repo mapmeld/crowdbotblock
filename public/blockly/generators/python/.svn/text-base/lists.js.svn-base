@@ -20,8 +20,6 @@
 /**
  * @fileoverview Generating Python for list blocks.
  * @author fraser@google.com (Neil Fraser)
- * Due to the frequency of long strings, the 80-column wrap rule need not apply
- * to language files.
  */
 
 Blockly.Python = Blockly.Generator.get('Python');
@@ -34,7 +32,7 @@ Blockly.Python.lists_create_empty = function() {
 Blockly.Python.lists_create_with = function() {
   // Create a list with any number of elements of any type.
   var code = new Array(this.itemCount_);
-  for (n = 0; n < this.itemCount_; n++) {
+  for (var n = 0; n < this.itemCount_; n++) {
     code[n] = Blockly.Python.valueToCode(this, 'ADD' + n,
         Blockly.JavaScript.ORDER_NONE) || 'None';
   }
@@ -42,7 +40,7 @@ Blockly.Python.lists_create_with = function() {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.Python.lists_repeat = function(opt_dropParens) {
+Blockly.Python.lists_repeat = function() {
   // Create a list with one element repeated.
   var argument0 = Blockly.Python.valueToCode(this, 'ITEM',
       Blockly.JavaScript.ORDER_NONE) || 'None';

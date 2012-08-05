@@ -1,35 +1,29 @@
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/svn/!svn/ver/300/trunk/language/zh_tw
+/svn/!svn/ver/379/trunk/language/zh_tw
 END
 text.js
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/286/trunk/language/zh_tw/text.js
+/svn/!svn/ver/379/trunk/language/zh_tw/text.js
 END
 _messages.js
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/300/trunk/language/zh_tw/_messages.js
-END
-math.js
-K 25
-svn:wc:ra_dav:version-url
-V 46
-/svn/!svn/ver/286/trunk/language/zh_tw/math.js
+/svn/!svn/ver/379/trunk/language/zh_tw/_messages.js
 END
 lists.js
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/svn/!svn/ver/300/trunk/language/zh_tw/lists.js
+/svn/!svn/ver/379/trunk/language/zh_tw/lists.js
 END
 control.js
 K 25
 svn:wc:ra_dav:version-url
 V 49
-/svn/!svn/ver/271/trunk/language/zh_tw/control.js
+/svn/!svn/ver/379/trunk/language/zh_tw/control.js
 END

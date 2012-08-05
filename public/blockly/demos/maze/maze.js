@@ -62,7 +62,10 @@ Maze.EAST = 1;
 Maze.SOUTH = 2;
 Maze.WEST = 3;
 
-Maze.setting = 1;
+/**
+ * Starting direction.
+ */
+Maze.startDirection = Maze.EAST;
 
 /**
  * PIDs of animation tasks currently executing.
@@ -90,20 +93,6 @@ Maze.init = function(blockly) {
       '</xml>');
   Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
 
-  // Locate the start and finish squares.
-  for (var y = 0; y < Maze.MAP.length; y++) {
-    for (var x = 0; x < Maze.MAP[0].length; x++) {
-      if (Maze.MAP[y][x] == 2) {
-        Maze.start_ = {x: x, y: y};
-      } else if (Maze.MAP[y][x] == 3) {
-        Maze.finish_ = {x: x, y: y};
-      }
-    }
-  }
-
-  // Locate the start and finish squares.
-  Maze.mapSet();
-
   // Record the map's offset.
   Maze.mapOffsetLeft_ = 0;
   Maze.mapOffsetTop_ = 0;
@@ -114,18 +103,7 @@ Maze.init = function(blockly) {
     element = element.offsetParent;
   }
 
-  // Move the finish icon into position.
-  var finishIcon = document.getElementById('finish');
-  finishIcon.style.top = Maze.mapOffsetTop_ +
-      Maze.SIZE * (Maze.finish_.y + 0.5) - finishIcon.offsetHeight;
-  finishIcon.style.left = Maze.mapOffsetLeft_ +
-      Maze.SIZE * (Maze.finish_.x + 0.5) - finishIcon.offsetWidth / 2;
-
-  Maze.reset();
-};
-
-// Locate the start and finish squares.
-Maze.mapSet = function() {
+  // Locate the start and finish squares.
   for (var y = 0; y < Maze.MAP.length; y++) {
     for (var x = 0; x < Maze.MAP[0].length; x++) {
       if (Maze.MAP[y][x] == 2) {
@@ -135,18 +113,27 @@ Maze.mapSet = function() {
       }
     }
   }
+
+  Maze.reset();
 };
 
 /**
  * Reset the maze to the start position and kill any pending animation tasks.
  */
 Maze.reset = function() {
-  eval("Maze.set"+(Maze.setting)+"();");
-  Maze.mapSet();
+  // Move Pegman into position.
   Maze.pegmanX = Maze.start_.x;
   Maze.pegmanY = Maze.start_.y;
-  //Maze.pegmanD = Maze.EAST;
+  Maze.pegmanD = Maze.startDirection;
   Maze.displayPegman(Maze.pegmanX, Maze.pegmanY, Maze.pegmanD * 4);
+
+  // Move the finish icon into position.
+  var finishIcon = document.getElementById('finish');
+  finishIcon.style.top = Maze.mapOffsetTop_ +
+      Maze.SIZE * (Maze.finish_.y + 0.5) - finishIcon.offsetHeight;
+  finishIcon.style.left = Maze.mapOffsetLeft_ +
+      Maze.SIZE * (Maze.finish_.x + 0.5) - finishIcon.offsetWidth / 2;
+
   // Kill all tasks.
   for (var x = 0; x < Maze.pidList.length; x++) {
     window.clearTimeout(Maze.pidList[x]);
@@ -160,7 +147,7 @@ Maze.reset = function() {
 Maze.runButtonClick = function() {
   document.getElementById('runButton').style.display = 'none';
   document.getElementById('resetButton').style.display = 'inline';
-  document.getElementById('setDiv').style.visibility = 'hidden';
+  document.getElementById('randomizeDiv').style.visibility = 'hidden';
   Blockly.mainWorkspace.traceOn(true);
   Maze.execute();
 };
@@ -171,70 +158,57 @@ Maze.runButtonClick = function() {
 Maze.resetButtonClick = function() {
   document.getElementById('runButton').style.display = 'inline';
   document.getElementById('resetButton').style.display = 'none';
-  document.getElementById('setDiv').style.visibility = 'visible';
+  document.getElementById('randomizeDiv').style.visibility = 'visible';
   Blockly.mainWorkspace.traceOn(false);
   Maze.reset();
 };
 
-Maze.setClick = function(n) {
-  eval("Maze.set" + n + "();");
+/**
+ * Move the start and finish to random locations.
+ * Set the starting direction randomly.
+ */
+Maze.randomize = function() {
+  // Clear the existing start and finish locations.
+  Maze.MAP[Maze.start_.y][Maze.start_.x] = 0;
+  Maze.MAP[Maze.finish_.y][Maze.finish_.x] = 0;
+
+  /**
+   * Find a random point that's a dead-end on the maze.
+   * Set this point to be either the start or finish.
+   * Closure, but does not reference any outside variables.
+   * @param {number} state 2 -> start point, 3-> finish point.
+   * @return {!Object} X-Y coordinates of new point.
+   */
+  function findCorner(state) {
+    while (true) {
+      var x = Math.floor(Math.random() * (Maze.MAP[0].length - 2)) + 1;
+      var y = Math.floor(Math.random() * (Maze.MAP.length - 2) + 1);
+      if (Maze.MAP[y][x] == 0) {
+        // Count the walls.
+        var walls = 0;
+        if (Maze.MAP[y + 1][x] == 1) {
+          walls++;
+        }
+        if (Maze.MAP[y - 1][x] == 1) {
+          walls++;
+        }
+        if (Maze.MAP[y][x + 1] == 1) {
+          walls++;
+        }
+        if (Maze.MAP[y][x - 1] == 1) {
+          walls++;
+        }
+        if (walls == 3) {
+          Maze.MAP[y][x] = state;
+          return {x: x, y: y};
+        }
+      }
+    }
+  }
+  Maze.start_ = findCorner(2);
+  Maze.finish_ = findCorner(3);
+  Maze.startDirection = Math.floor(Math.random() * 4);
   Maze.reset();
-};
-
-Maze.set1 = function() {
-  Maze.MAP = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 1, 3, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 2, 0, 0, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]];
-  Maze.pegmanD = Maze.EAST;
-  Maze.setting = 1;
-};
-
-Maze.set2 = function() {
-  Maze.MAP = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 1, 3, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 2, 1, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]];
-  Maze.pegmanD = Maze.WEST;
-  Maze.setting = 2;
-};
-
-Maze.set3 = function() {
-  Maze.MAP = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 1, 3, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 2, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]];
-  Maze.pegmanD = Maze.NORTH;
-  Maze.setting = 3;
-};
-
-Maze.set4 = function() {
-  Maze.MAP = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 2, 1, 0, 1, 3, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]];
-  Maze.pegmanD = Maze.WEST;
-  Maze.setting = 4;
 };
 
 /**
@@ -439,6 +413,7 @@ Maze.constrainDirection16 = function(d) {
 /**
  * If the user has executed too many actions, we're probably in an infinite
  * loop.  Sadly I wasn't able to solve the Halting Problem for this demo.
+ * @param {?string} id ID of loop block to highlight if timeout is reached.
  * @throws {false} Throws an error to terminate the user's program.
  */
 Maze.checkTimeout = function(id) {
@@ -462,6 +437,7 @@ Maze.showCode = function() {
 };
 
 // API
+// Human-readable aliases.
 
 Maze.moveForward = function(id) {
   Maze.move(0, id);
@@ -495,7 +471,7 @@ Maze.isWallLeft = function() {
   return Maze.isWall(3);
 };
 
-//
+// Core functions.
 
 /**
  * Move pegman forward or backward.

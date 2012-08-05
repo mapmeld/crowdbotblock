@@ -225,6 +225,7 @@ Blockly.svgResize = function() {
  * @private
  */
 Blockly.onMouseDown_ = function(e) {
+  Blockly.Block.terminateDrag_();
   Blockly.hideChaff();
   Blockly.removeAllRanges();
   if (Blockly.isTargetInput_(e) ||
@@ -235,7 +236,7 @@ Blockly.onMouseDown_ = function(e) {
     // Clicking on the document clears the selection.
     Blockly.selected.unselect();
   }
-  if (e.button == 2) {
+  if (Blockly.isRightButton(e)) {
     // Right-click.
     if (Blockly.ContextMenu) {
       Blockly.showContextMenu_(e.clientX, e.clientY);
@@ -358,7 +359,8 @@ Blockly.hideChaff = function(opt_allowToolbox) {
   Blockly.Tooltip && Blockly.Tooltip.hide();
   Blockly.ContextMenu && Blockly.ContextMenu.hide();
   Blockly.FieldDropdown.hideMenu();
-  if (Blockly.Toolbox && !opt_allowToolbox && Blockly.Toolbox.flyout_.autoClose) {
+  if (Blockly.Toolbox && !opt_allowToolbox &&
+      Blockly.Toolbox.flyout_.autoClose) {
     Blockly.Toolbox.clearSelection();
   }
 };
@@ -524,7 +526,8 @@ Blockly.setMainWorkspaceMetrics = function(xyRatio) {
       (Blockly.mainWorkspace.scrollX + metrics.absoluteLeft) + ',' +
       (Blockly.mainWorkspace.scrollY + metrics.absoluteTop) + ')';
   Blockly.mainWorkspace.getCanvas().setAttribute('transform', translation);
-  Blockly.commentCanvas.setAttribute('transform', translation);
+  Blockly.mainWorkspace.getBubbleCanvas().setAttribute('transform',
+                                                       translation);
 };
 
 /**

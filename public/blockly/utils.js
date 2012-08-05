@@ -115,13 +115,15 @@ Blockly.bindEvent_ = function(element, name, thisObject, func) {
                                wrapFunc, false);
       bindData.push([element, Blockly.bindEvent_.TOUCH_MAP[name], wrapFunc]);
     }
-  } else {  // IE
+  } else if (element.attachEvent) {  // IE
     wrapFunc = function(e) {
       func.apply(thisObject, arguments);
       e.stopPropagation();
     };
     element.attachEvent('on' + name, wrapFunc);
     bindData.push([element, name, wrapFunc]);
+  } else {
+    throw 'Element is not a DOM node.';
   }
   return bindData;
 };
@@ -158,11 +160,11 @@ Blockly.unbindEvent_ = function(bindData) {
 
 /**
  * Fire a synthetic event.
- * @param {!Element} doc Window's document for the event.
  * @param {!Element} element The event's target element.
  * @param {string} eventName Name of event (e.g. 'click').
  */
-Blockly.fireUiEvent = function(doc, element, eventName) {
+Blockly.fireUiEvent = function(element, eventName) {
+  var doc = Blockly.svgDoc;
   if (doc.createEvent) {
     // W3
     var evt = doc.createEvent('UIEvents');
@@ -295,4 +297,14 @@ Blockly.uniqueId = function() {
     id = Blockly.uniqueId();
   }
   return id;
+};
+
+/**
+ * Is this event a right-click?
+ * @param {!Event} e Mouse event.
+ * @return {boolean} True if right-click.
+ */
+Blockly.isRightButton = function(e) {
+  // Control-clicking in WebKit on Mac OS X fails to change button to 2.
+  return e.button == 2 || e.ctrlKey;
 };
