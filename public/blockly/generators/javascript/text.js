@@ -245,6 +245,15 @@ Blockly.JavaScript.piezo_tone = function(){
   time *= 1;
   return 'piezo' + pin + '.tone(' + volume + ',' + time + ');\n';
 };
+Blockly.JavaScript.piezo_fade = function(){
+  var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  pin *= 1;
+  var volume = Blockly.JavaScript.valueToCode(this, 'VOL', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  volume *= 1;
+  var time = Blockly.JavaScript.valueToCode(this, 'TIME', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  time *= 1;
+  return 'piezo' + pin + '.fade(' + volume + ',' + time + ');\n';
+};
 
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.
