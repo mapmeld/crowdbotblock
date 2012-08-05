@@ -370,6 +370,20 @@ Blockly.Language.servo_move = {
     this.setTooltip("Move Servo");
   }
 };
+// wait function
+Blockly.Language.controls_whileUntil = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_CONTROLS_WHILEUNTIL_HELPURL,
+  init: function() {
+    this.setColour(80);
+    this.appendTitle("Wait");
+    this.appendInput('for', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendInput('then', Blockly.NEXT_STATEMENT, 'DO');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Wait");
+  }
+};
 
 Blockly.Language.text_prompt = {
   // Prompt function.

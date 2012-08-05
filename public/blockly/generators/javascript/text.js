@@ -216,6 +216,12 @@ Blockly.JavaScript.servo_move = function(){
   var argument1 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
+// Wait callback
+Blockly.JavaScript.wait = function() {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var branch0 = Blockly.JavaScript.statementToCode(this, 'DO');
+  return 'board.wait(' + (argument0*1) + ', function(){\n' + branch0 + '});\n';
+};
 
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.
