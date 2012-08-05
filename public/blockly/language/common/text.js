@@ -387,6 +387,33 @@ Blockly.Language.button = {
     this.setTooltip("Button");
   }
 };
+// piezo init and tone
+Blockly.Language.piezo_init = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Init");
+    this.appendInput('Piezo@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Init Piezo");
+  }
+};
+Blockly.Language.piezo_tone = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Tone");
+    this.appendInput('Piezo@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendInput('Volume', Blockly.INPUT_VALUE, 'VOL', Number);
+    this.appendInput('Time', Blockly.INPUT_VALUE, 'TIME', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Piezo Tone");
+  }
+};
 
 Blockly.Language.text_prompt = {
   // Prompt function.
