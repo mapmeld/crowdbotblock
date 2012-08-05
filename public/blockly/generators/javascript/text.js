@@ -224,7 +224,7 @@ Blockly.JavaScript.wait = function() {
 };
 // Button callbacks
 Blockly.JavaScript.button = function() {
-  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   var branch0 = Blockly.JavaScript.statementToCode(this, 'HIT');
   var branch1 = Blockly.JavaScript.statementToCode(this, 'RELEASE');
   argument0 *= 1;
