@@ -344,6 +344,32 @@ Blockly.Language.text_off = {
     this.setTooltip("Off");
   }
 };
+// Servo init, min, max, center, move, sweep
+Blockly.Language.servo_init = {
+  category: "Motor",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Init");
+    this.appendInput('Servo@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Init Servo");
+  }
+};
+Blockly.Language.servo_move = {
+  category: "Motor",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Move");
+    this.appendInput('Servo@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendInput('to', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Move Servo");
+  }
+};
 
 Blockly.Language.text_prompt = {
   // Prompt function.

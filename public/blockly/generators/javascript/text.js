@@ -195,10 +195,6 @@ Blockly.JavaScript.text_print = function() {
 };
 
 // attempt CrowdBotBlock code
-Blockly.JavaScript.text_test = function() {
-  var argument0 = Blockly.JavaScript.valueToCode(this, 'TEXT', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  return 'window.alert(' + argument0 + ');\n';
-};
 Blockly.JavaScript.text_strobe = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return '(new five.Led(' + (argument0*1) + ')).strobe();\n';
@@ -210,6 +206,15 @@ Blockly.JavaScript.text_on = function(){
 Blockly.JavaScript.text_off = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return '(new five.Led(' + (argument0*1) + ')).off();\n';
+};
+Blockly.JavaScript.servo_init = function(){
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'var servo' + (argument0*1) + ' = new five.Servo(' + (argument0*1) + ');\nboard.repl.inject({servo: servo' + (argument0*1) + '});\n';
+};
+Blockly.JavaScript.servo_move = function(){
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var argument1 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
 
 Blockly.JavaScript.text_prompt = function() {
