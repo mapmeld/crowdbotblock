@@ -320,16 +320,28 @@ Blockly.Language.text_strobe = {
     this.setTooltip("Strobe");
   }
 };
-Blockly.Language.text_onoff = {
+Blockly.Language.text_on = {
   category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("OnOff");
+    this.appendTitle("On");
     this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("OnOff");
+    this.setTooltip("On");
+  }
+};
+Blockly.Language.text_off = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Off");
+    this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Off");
   }
 };
 

@@ -128,7 +128,7 @@ Blockly.JavaScript.finish = function(code) {
   for (var name in Blockly.JavaScript.definitions_) {
     definitions.push(Blockly.JavaScript.definitions_[name]);
   }
-  return definitions.join('\n') + '\n\n' + code;
+  return "var five = require('johnny-five');\nvar board = new five.Board();\nboard.on('ready', function(){\n" + definitions.join('\n') + '\n\n' + code + "\n});";
 };
 
 /**
