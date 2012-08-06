@@ -65,7 +65,7 @@ var init = exports.init = function (config) {
   });
   app.get('/livestream', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
-      res.render('livestream', { js: replaceAll(replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), "\n", "<br/>") });
+      res.render('livestream', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") });
     });
   });
   io.sockets.on('connection', function(socket){
@@ -96,7 +96,7 @@ var init = exports.init = function (config) {
   app.get('/latest', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
       if(io && io.sockets && req.query['lastid'] != doc._id){
-        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), "\n", "<br/>") });
+        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") });
       }
       res.send(doc);
     });
