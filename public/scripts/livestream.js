@@ -9,7 +9,7 @@ socket.on('newprogram', function(data){
 socket.on('newdata', function(data){
   console.log(data.info);
   var line = document.createElement("li");
-  line.innerHTML = data.info.info;
+  line.innerHTML = data.info;
   document.getElementById("livedata").appendChild(line);
 });
 setTimeout(function(){
