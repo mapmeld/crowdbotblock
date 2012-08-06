@@ -10,6 +10,16 @@ appinstance = "http://crowdbotblock.herokuapp.com"
 
 loops = 0
 lastid = ""
+
+# overwrite console.log to send messages / data to livestream
+introcode = '''var console = {
+  log: function(info){
+    var request = require('request');
+    var speakurl = "http://crowdbotblock.herokuapp.com/speak";
+    request.post({url: speakurl, body: { message: (info+"") }}, function(e, r, body){ });
+  }
+};\n'''
+
 # while loops < 125: # 125 loops x 1 minute > 2 hours running time
 while loops < 125:
 	program = json.loads(urllib.urlopen(appinstance + '/latest?lastid=' + lastid).read())
@@ -27,6 +37,9 @@ while loops < 125:
 		# do not run programs which require libraries other than johnny-five
 		if(program["js"].replace("require('johnny-five')","").find("require") > -1):
 			continue
+		# do not run programs which use request
+		if(program["js"].find("request") > -1):
+			continue
 		# just to be safe, don't run programs with square brackets yet
 		if((program["js"].find('[') > -1) or (program["js"].find(']') > -1)):
 			continue
@@ -35,6 +48,7 @@ while loops < 125:
 		myfilename = 'submitted-crowdbotblock.js'
 
 		saveprogram = open(myfilename,'w')
+		saveprogram.write(introcode)
 		saveprogram.write(program["js"])
 		saveprogram.close()
 

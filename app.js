@@ -68,12 +68,12 @@ var init = exports.init = function (config) {
       res.render('livestream', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") });
     });
   });
-  io.sockets.on('connection', function(socket){
-    //socket.emit('code', { hello: 'world' });
-    //socket.on('special', function(data){
-    //  console.log(data);
-    //});
-  });
+  /*io.sockets.on('connection', function(socket){
+    socket.emit('code', { hello: 'world' });
+    socket.on('special', function(data){
+      console.log(data);
+    });
+  });*/
 
   app.post('/code', function(req, res){
     var code = req.body.js;
@@ -84,6 +84,13 @@ var init = exports.init = function (config) {
     myblock.save(function(err){
       res.send("console.log('all good');");
     });
+  });
+  app.post('/speak', function(req, res){
+    var message = req.body.message;
+    if(io && io.sockets){
+      io.sockets.emit('newdata', { info: replaceAll(replaceAll(message, "<", "&lt;"), ">", "&gt;") }); 
+    }
+    res.send({});
   });
   
   var replaceAll = function(src, oldr, newr){
