@@ -7,6 +7,7 @@ socket.on('newprogram', function(data){
   }, 250);
 });
 socket.on('newdata', function(data){
+  console.log(data.info);
   var line = document.createElement("li");
   line.innerHTML = data.info.info;
   document.getElementById("livedata").appendChild(line);
