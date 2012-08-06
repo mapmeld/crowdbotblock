@@ -16,9 +16,25 @@ introcode = '''var console = {
   log: function(info){
     var request = require('request');
     var speakurl = "http://crowdbotblock.herokuapp.com/speak";
-    request.post({url: speakurl, body: { message: (info+"") }}, function(e, r, body){ });
+    request.post({url: speakurl, body: (info+"") }, function(e, r, body){ });
   }
-};\n'''
+};
+if(typeof fs !== "undefined"){ fs = null; }\n
+if(typeof process !== "undefined"){
+  process.chdir = null;
+  process.env = { NODE_DEBUG: process.env.NODE_DEBUG };
+  process.getgid = null;
+  process.setgid = null;
+  process.getuid = null;
+  process.setuid = null;
+  process.kill = null;
+  process.pid = null;
+  process.umask = null;
+}\n
+if(typeof prompt !== "undefined"){ prompt = null; }\n
+if(typeof util !== "undefined"){ util = null; }\n
+if(typeof http !== "undefined"){ http = null; }\n
+if(typeof child_process !== "undefined"){ child_process = null; }\n'''
 
 # while loops < 125: # 125 loops x 1 minute > 2 hours running time
 while loops < 125:

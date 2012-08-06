@@ -75,4 +75,5 @@ After you have created a new app on Heroku and pushed the code via git, you will
 ## Running CrowdBotHost.py
 
     npm install johnny-five
+    npm install request
     python CrowdBotHost.py
