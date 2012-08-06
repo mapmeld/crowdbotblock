@@ -10,6 +10,7 @@ var auth = require('./auth')
     , mongoStore = require('connect-mongo')(express)
     , routes = require('./routes')
     , middleware = require('./middleware')
+    , blockcode = require('./blockcode')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
@@ -53,7 +54,21 @@ var init = exports.init = function (config) {
   
   // Routes
   app.post('/code', function(req, res){
-    res.send( req.body );
+    var code = req.body.js;
+    var myblock = new blockcode.blockcode({
+      js: code,
+      updated: new Date()
+    });
+    myblock.save(function(err){
+      return "console.log('all good');";    
+    });
+  });
+  
+  app.get('/latest', function(req, res){
+    var codesearch = blockcode.blockcode.limit(1).desc('updated');
+    codesearch.exec(function(err, doc){
+      res.send( doc );
+    });
   });
 
   app.get('/auth', middleware.require_auth_browser, routes.index);
