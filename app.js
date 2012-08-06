@@ -25,6 +25,9 @@ var init = exports.init = function (config) {
 
   var app = express.createServer();
 
+  var io = require('socket.io').listen(app)
+  app.listen(80);
+
   app.configure(function(){
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
@@ -58,6 +61,12 @@ var init = exports.init = function (config) {
   });
   app.get('/livestream', function(req, res){
     res.render('livestream');
+  });
+  io.sockets.on('connection', function(socket){
+    socket.emit('code', { hello: 'world' });
+    socket.on('special', function(data){
+      console.log(data);
+    });
   });
 
   app.post('/code', function(req, res){
