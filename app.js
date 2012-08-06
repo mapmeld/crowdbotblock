@@ -63,10 +63,10 @@ var init = exports.init = function (config) {
     res.render('livestream');
   });
   io.sockets.on('connection', function(socket){
-    socket.emit('code', { hello: 'world' });
-    socket.on('special', function(data){
-      console.log(data);
-    });
+    //socket.emit('code', { hello: 'world' });
+    //socket.on('special', function(data){
+    //  console.log(data);
+    //});
   });
 
   app.post('/code', function(req, res){
@@ -82,6 +82,9 @@ var init = exports.init = function (config) {
   
   app.get('/latest', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
+      if(io && io.sockets){
+        io.sockets.emit('newprogram', doc)
+      }
       res.send(doc);
     });
   });

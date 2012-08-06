@@ -1,5 +1,5 @@
 var socket = io.connect('http://crowdbotblock.herokuapp.com');
-socket.on('code', function (data) {
+socket.on('newprogram', function(data){
   console.log(data);
-  socket.emit('special', { my: 'data' });
+  document.getElementById("livecode").innerHTML = escape(data.js);
 });
