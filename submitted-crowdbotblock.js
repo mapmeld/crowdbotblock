@@ -4,6 +4,5 @@ board.on('ready', function(){
 
 
 (new five.Led(13)).strobe();
-(new five.Led(2)).strobe();
 
 });

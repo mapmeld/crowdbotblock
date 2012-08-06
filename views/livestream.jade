@@ -19,12 +19,13 @@ div.navbar
 
 div.container
   .row
-    .span8
+    .span7
       h3 Watch CrowdBot
       iframe(src="http://www.ustream.tv/embed/9893969", width="500", height="350", scrolling="no", frameborder="0", style="border: 0px none transparent;")
-    .span4
+    .span5
       h4 Current Program
-      pre#livecode(class="brush: js") #{js}
+      div#codecontainer
+        pre#livecode(class="brush: js") #{js}
       script(type="text/javascript") SyntaxHighlighter.all();
       p Updated in realtime by socket.io
 
