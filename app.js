@@ -88,7 +88,8 @@ var init = exports.init = function (config) {
   app.post('/speak', function(req, res){
     var message = req.body;
     if(io && io.sockets){
-      io.sockets.emit('newdata', { info: replaceAll(replaceAll(message, "<", "&lt;"), ">", "&gt;") }); 
+      //io.sockets.emit('newdata', { info: replaceAll(replaceAll(message, "<", "&lt;"), ">", "&gt;") }); 
+      io.sockets.emit('newdata', { info: Object.keys(message).toString() });
     }
     res.send({});
   });

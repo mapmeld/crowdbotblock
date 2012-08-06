@@ -16,10 +16,10 @@ introcode = '''var console = {
   log: function(info){
     var request = require('request');
     var speakurl = "http://crowdbotblock.herokuapp.com/speak";
-    request.post({url: speakurl, body: (info+"") }, function(e, r, body){ });
+    request.post({url: speakurl, body: (info+"")}, null);
   }
 };
-if(typeof fs !== "undefined"){ fs = null; }\n
+if(typeof fs !== "undefined"){ fs = null; }
 if(typeof process !== "undefined"){
   process.chdir = null;
   process.env = { NODE_DEBUG: process.env.NODE_DEBUG };
@@ -30,11 +30,11 @@ if(typeof process !== "undefined"){
   process.kill = null;
   process.pid = null;
   process.umask = null;
-}\n
-if(typeof prompt !== "undefined"){ prompt = null; }\n
-if(typeof util !== "undefined"){ util = null; }\n
-if(typeof http !== "undefined"){ http = null; }\n
-if(typeof child_process !== "undefined"){ child_process = null; }\n'''
+}
+if(typeof prompt !== "undefined"){ prompt = null; }
+if(typeof util !== "undefined"){ util = null; }
+if(typeof http !== "undefined"){ http = null; }
+if(typeof child_process !== "undefined"){ child_process = null; }'''
 
 # while loops < 125: # 125 loops x 1 minute > 2 hours running time
 while loops < 125:
@@ -64,8 +64,7 @@ while loops < 125:
 		myfilename = 'submitted-crowdbotblock.js'
 
 		saveprogram = open(myfilename,'w')
-		saveprogram.write(introcode)
-		saveprogram.write(program["js"])
+		saveprogram.write(introcode + "\n" + program["js"])
 		saveprogram.close()
 
 		response = os.system('node submitted-crowdbotblock.js')

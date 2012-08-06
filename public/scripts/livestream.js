@@ -7,10 +7,10 @@ socket.on('newprogram', function(data){
   }, 250);
 });
 socket.on('newdata', function(data){
+  console.log(data);
   var line = document.createElement("li");
   line.innerHTML = data.info;
   document.getElementById("livedata").appendChild(line);
-  console.log(data.info);
 });
 setTimeout(function(){
   SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
