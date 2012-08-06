@@ -191,7 +191,7 @@ Blockly.JavaScript.text_print = function() {
   // Print statement.
   var argument0 = Blockly.JavaScript.valueToCode(this, 'TEXT',
       Blockly.JavaScript.ORDER_NONE) || '\'\'';
-  return 'window.alert(' + argument0 + ');\n';
+  return 'console.log(' + argument0 + ');\n';
 };
 
 // attempt CrowdBotBlock code

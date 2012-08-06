@@ -4,6 +4,7 @@
   <title>Blockly Demo: Code</title>
   <script type="text/javascript" src="BlobBuilder.min.js"></script>
   <script type="text/javascript" src="FileSaver.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script>
 /**
  * List of tab names.
@@ -120,11 +121,20 @@ function init(blockly) {
  */
 function runJS() {
   var code = Blockly.Generator.workspaceToCode('JavaScript');
-  try {
-    eval(code);
-  } catch (e) {
-    alert('Program error:\n' + e);
-  }
+  //try {
+  //  eval(code);
+  //} catch (e) {
+  //  alert('Program error:\n' + e);
+  //}
+  jQuery.ajax({
+    type: 'POST',
+    url: '/code',
+    data: { js: code },
+    success: function(){
+      window.alert('Code will be reviewed');
+    },
+    dataType: 'text/javascript'
+  });
 }
 
 /**
@@ -305,7 +315,7 @@ function discard() {
   <table height="100%" width="100%">
     <tr>
       <td>
-        <h1>BETA of <a href="https://github.com/mapmeld/crowdbotblock">CrowdBotBlock</a> based on <a href="http://code.google.com/p/blockly/">Blockly</a> and the <a href="https://github.com/rwldrn/johnny-five">johnny-five</a> node module.</h1>
+        <h2>BETA of <a href="https://github.com/mapmeld/crowdbotblock">CrowdBotBlock</a> based on Google's <a href="http://code.google.com/p/blockly/">Blockly</a> and Rick Waldron's <a href="https://github.com/rwldrn/johnny-five">johnny-five</a> node module.</h2>
       </td>
     </tr>
     <tr>
