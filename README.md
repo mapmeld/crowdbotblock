@@ -17,7 +17,7 @@ Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and re
 <img src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg"/>
 
 ## Roadmap
-CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C.
+CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C. The roadmap to making similar and then brand new features:
 
 <ul>
 <li>Livestream data and console.log messages</li>
