@@ -94,7 +94,7 @@ var init = exports.init = function (config) {
   app.get('/latest', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
       if(io && io.sockets && req.query['lastid'] != doc._id){
-        io.sockets.emit('newprogram', { js: replaceAll(doc.js, "\n", "<br/>") });
+        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), "\n", "<br/>") });
       }
       res.send(doc);
     });
