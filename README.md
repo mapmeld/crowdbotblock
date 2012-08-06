@@ -71,3 +71,8 @@ For more details, please see this [blog post](http://blog.beyondfog.com/?p=222) 
 After you have created a new app on Heroku and pushed the code via git, you will need to use the Heroku Toolbelt from your command line to add the free MongoLab starter addon:
 
     heroku addons:add mongolab:starter
+    
+## Running CrowdBotHost.py
+
+    npm install johnny-five
+    python CrowdBotHost.py
