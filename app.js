@@ -60,14 +60,13 @@ var init = exports.init = function (config) {
       updated: new Date()
     });
     myblock.save(function(err){
-      return "console.log('all good');";    
+      res.send("console.log('all good');");
     });
   });
   
   app.get('/latest', function(req, res){
-    var codesearch = blockcode.blockcode.limit(1).desc('updated');
-    codesearch.exec(function(err, doc){
-      res.send( doc );
+    blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
+      res.send(doc);
     });
   });
 
