@@ -89,7 +89,7 @@ var init = exports.init = function (config) {
     var message = req.body;
     if(io && io.sockets){
       //io.sockets.emit('newdata', { info: replaceAll(replaceAll(message, "<", "&lt;"), ">", "&gt;") }); 
-      io.sockets.emit('newdata', { info: Object.keys(message).toString() });
+      io.sockets.emit('newdata', { info: message });
     }
     res.send({});
   });
