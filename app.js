@@ -56,6 +56,9 @@ var init = exports.init = function (config) {
   app.get('/', function(req, res){
     res.render('homepage');
   });
+  app.get('/livestream', function(req, res){
+    res.render('livestream');
+  });
 
   app.post('/code', function(req, res){
     var code = req.body.js;
