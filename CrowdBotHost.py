@@ -14,12 +14,27 @@ lastid = ""
 # overwrite console.log to send messages / data to livestream
 introcode = '''var console = {
   log: function(info){
-    var request = require('request');
-    var speakurl = "http://crowdbotblock.herokuapp.com/speak";
-    request.post({url: speakurl, body: (info+"")}, null);
+    var querystring = require("querystring");
+    var post_data = querystring.stringify({
+      info: info
+    });
+    var options = {
+      host: "crowdbotblock.herokuapp.com",
+      port: 80,
+      path: '/speak',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': post_data.length
+      }
+    };
+    var http = require("http");
+    var req = http.request(options, null);
+    req.write(post_data);
+    req.end();
   }
 };
-if(typeof fs !== "undefined"){ fs = null; }
+/*if(typeof fs !== "undefined"){ fs = null; }
 if(typeof process !== "undefined"){
   process.chdir = null;
   process.env = { NODE_DEBUG: process.env.NODE_DEBUG };
@@ -34,7 +49,8 @@ if(typeof process !== "undefined"){
 if(typeof prompt !== "undefined"){ prompt = null; }
 if(typeof util !== "undefined"){ util = null; }
 if(typeof http !== "undefined"){ http = null; }
-if(typeof child_process !== "undefined"){ child_process = null; }'''
+if(typeof child_process !== "undefined"){ child_process = null; }*/
+'''
 
 # while loops < 125: # 125 loops x 1 minute > 2 hours running time
 while loops < 125:
