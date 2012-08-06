@@ -53,7 +53,7 @@ var init = exports.init = function (config) {
   
   // Routes
   app.post('/code', function(req, res){
-    res.send(escape( req.query['code'] ));
+    res.send(escape( req.body.code ));
   });
 
   app.get('/auth', middleware.require_auth_browser, routes.index);
