@@ -53,6 +53,10 @@ var init = exports.init = function (config) {
   
   
   // Routes
+  app.get('/', function(req, res){
+    res.render('homepage');
+  });
+
   app.post('/code', function(req, res){
     var code = req.body.js;
     var myblock = new blockcode.blockcode({
