@@ -84,10 +84,17 @@ var init = exports.init = function (config) {
     });
   });
   
+  var replaceAll = function(src, oldr, newr){
+    while(src.indexOf(oldr) > -1){
+      src = src.replace(oldr, newr);
+    }
+    return src;
+  };
+  
   app.get('/latest', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
-      if(io && io.sockets){
-        io.sockets.emit('newprogram', doc)
+      if(io && io.sockets && req.query['lastid'] != doc._id){
+        io.sockets.emit('newprogram', { js: replaceAll(doc.js, "\n", "<br/>") });
       }
       res.send(doc);
     });

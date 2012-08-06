@@ -12,7 +12,7 @@ loops = 0
 lastid = ""
 # while loops < 125: # 125 loops x 1 minute > 2 hours running time
 while loops < 125:
-	program = json.loads(urllib.urlopen(appinstance + '/latest').read())
+	program = json.loads(urllib.urlopen(appinstance + '/latest?lastid=' + lastid).read())
 	
 	if(program["_id"] != lastid):
 		print program["js"]
