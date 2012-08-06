@@ -3,6 +3,6 @@ var board = new five.Board();
 board.on('ready', function(){
 
 
-(new five.Led(13)).strobe();
+(new five.Led(1)).strobe();
 
 });
