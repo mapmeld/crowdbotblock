@@ -25,12 +25,8 @@ var init = exports.init = function (config) {
 
   var app = express.createServer();
 
-  var io = require('socket.io').listen(app)
-  io.configure(function () { 
-    io.set("transports", ["xhr-polling"]); 
-    io.set("polling duration", 10); 
-  });
-  app.listen(8080);
+  var io = require('socket.io').listen(app);
+  //app.listen(80);
 
   app.configure(function(){
     app.set('views', __dirname + '/views');
@@ -57,7 +53,11 @@ var init = exports.init = function (config) {
   app.configure('production', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: false}));
   });
-  
+
+  io.configure(function(){
+    io.set("transports", ["xhr-polling"]); 
+    io.set("polling duration", 10); 
+  });
   
   // Routes
   app.get('/', function(req, res){
