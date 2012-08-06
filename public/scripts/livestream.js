@@ -6,4 +6,4 @@ socket.on('newprogram', function(data){
     SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
   }, 250);
 });
-SyntaxHighlighter.all();
+SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
