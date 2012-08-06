@@ -12,7 +12,7 @@ That code is then transferred to JavaScript which can be run by a node server wi
 
 ## Click 'Send' and Watch Live
 
-Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web
+Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web. Socket.io makes it possible to see the running program in real time.
 
 <img src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg"/>
 
@@ -20,7 +20,7 @@ Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and re
 CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C. The roadmap to making similar and then brand new features:
 
 <ul>
-<li>Livestream data and console.log messages</li>
+<li>Use socket.io to stream data and console.log messages</li>
 <li>Tweet or e-mail users when their code runs</li>
 <li>Archive each user's code and results</li>
 </ul>

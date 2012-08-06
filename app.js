@@ -64,7 +64,9 @@ var init = exports.init = function (config) {
     res.render('homepage');
   });
   app.get('/livestream', function(req, res){
-    res.render('livestream');
+    blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
+      res.render('livestream', { js: replaceAll(replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), "\n", "<br/>") });
+    });
   });
   io.sockets.on('connection', function(socket){
     //socket.emit('code', { hello: 'world' });
