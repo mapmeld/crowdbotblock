@@ -26,7 +26,11 @@ var init = exports.init = function (config) {
   var app = express.createServer();
 
   var io = require('socket.io').listen(app)
-  app.listen(80);
+  io.configure(function () { 
+    io.set("transports", ["xhr-polling"]); 
+    io.set("polling duration", 10); 
+  });
+  app.listen(8080);
 
   app.configure(function(){
     app.set('views', __dirname + '/views');
