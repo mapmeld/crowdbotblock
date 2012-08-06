@@ -1,6 +1,6 @@
 # About CrowdBotBlock
 
-CrowdBotBlock is a drag-and-drop programming environment to write code to control an Arduino. The code is then executed on a crowdbotblock-host computer which is connected to the Arduino.
+## First, write your code:
 
 Suppose you put some blocks together like this:
 
@@ -10,7 +10,20 @@ That code is then transferred to JavaScript which can be run by a node server wi
 
 <img src="http://i.imgur.com/0SXPJ.png"/>
 
-This is a redesign of the [CrowdBot](https://github.com/mapmeld/CrowdBot) project where you could write programs in C which were then uploaded to an Arduino, with data and video livestreamed back.
+## Click 'Send' and Watch Live
+
+Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web
+
+<img src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg"/>
+
+## Roadmap
+CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C.
+
+<ul>
+<li>Livestream data and console.log messages</li>
+<li>Tweet or e-mail users when their code runs</li>
+<li>Archive each user's code and results</li>
+</ul>
 
 # About Blockly
 
