@@ -22,7 +22,7 @@ CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which
 <ul>
 <li>Use socket.io to stream data and console.log messages</li>
 <li>Tweet or e-mail users when their code runs</li>
-<li>Archive each user's code and results</li>
+<li>Archive each user's code and results for future stuff</li>
 </ul>
 
 # About Blockly
