@@ -28,12 +28,12 @@ div.container
       div#wait(style="display:none;padding:10px;background-color:#ffffaa;")
         h4 Your program is in the cue
         p Please wait.
-        a#myblockview(href="", target="_blank") See Blocks 
+        a#myblockview(href="", target="_blank", style="color:blue;") See Blocks 
       h4 Current Program
       div#codecontainer
         pre#livecode(class="brush: js") #{program.js}
 
-      a#blockview(href="/blockly/demos/code/index.html?id=#{program.id}", target="_blank") See Blocks
+      a#blockview(href="/blockly/demos/code/index.html?id=#{program.id}", target="_blank", style="color:blue;") See Blocks
       p
         span Updated in realtime by&nbsp;
         a(href="http://socket.io", target="_blank") socket.io
