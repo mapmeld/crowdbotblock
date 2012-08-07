@@ -165,7 +165,7 @@ function getURLParameter(name) {
  * Restore code blocks from localStorage.
  */
 function restore_blocks() {
-  if (getURLParameter("id")){
+  if (getURLParameter("id") != "null"){
     // attempt load from server
     $.getJSON("/code?id=" + getURLParameter("id"), function(data){
       console.log(data.xml);
