@@ -6,7 +6,7 @@ Suppose you put some blocks together like this:
 
 <img src="http://i.imgur.com/wDxAi.png"/>
 
-That code is then transferred to JavaScript which can be run by a node server with the johnny-five module:
+That code is then transferred to JavaScript which can be run by a node server using the johnny-five module:
 
 <img src="http://i.imgur.com/0SXPJ.png"/>
 
