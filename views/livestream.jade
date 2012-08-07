@@ -25,14 +25,18 @@ div.container
       h3 Data Stream
       ul#livedata(style="margin-left:-30px;border:1px solid #000;padding:6px;height:400px;overflow-y:scroll;")
     .span5
-      div#wait(style="display:none;padding:10px;background-color:#ffffaa;")
-        h4 Your program is in the cue
-        p Please wait.
+      #wait(style="display:none;padding:10px;background-color:#ffffaa;")
+        #wait-inner
+          h4 Your program is in the cue
+          p Please wait.
+        iframe#myblocktweet(allowtransparency="true", frameborder="0", scrolling="no", src="//platform.twitter.com/widgets/tweet_button.html", style="width:130px; height:20px;")
         a#myblockview(href="", target="_blank", style="color:blue;") See Blocks 
       h4 Current Program
       div#codecontainer
         pre#livecode(class="brush: js") #{program.js}
 
+      iframe#blocktweet(allowtransparency="true", frameborder="0", scrolling="no", src="//platform.twitter.com/widgets/tweet_button.html?text=Tweet%20this%20Program", style="width:130px; height:20px;")
+      br
       a#blockview(href="/blockly/demos/code/index.html?id=#{program.id}", target="_blank", style="color:blue;") See Blocks
       p
         span Updated in realtime by&nbsp;
