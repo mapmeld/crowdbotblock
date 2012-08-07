@@ -29,6 +29,8 @@ CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which
 
 Blockly is an open-source, drag-and-drop programming environment from Google. It was chosen for this project because it runs in the web browser and compiles to JavaScript.
 
+In addition to the changes made for CrowdBotBlock, you can [write your own blocks for Blockly](http://code.google.com/p/blockly/wiki/DefiningBlocks).
+
 See more on the Google Code page for [Blockly](http://code.google.com/p/blockly/).
 
 # About Johnny-Five
