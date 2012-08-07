@@ -1,9 +1,7 @@
-function seeifwait(nowid){
-  if(getURLParameter("id") != "null"){
-    document.getElementById("myblockview").href = "/blockly/demos/code/index.html?id=" + getURLParameter("id");
-    if(nowid != getURLParameter("id")){
-      document.getElementById("wait").style.display = "block";
-    }
+if(getURLParameter("id") != "null"){
+  document.getElementById("myblockview").href = "/blockly/demos/code/index.html?id=" + getURLParameter("id");
+  if(nowid != getURLParameter("id")){
+    document.getElementById("wait").style.display = "block";
   }
 }
 
