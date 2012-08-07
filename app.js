@@ -65,7 +65,7 @@ var init = exports.init = function (config) {
   });
   app.get('/livestream', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
-      res.render('livestream', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") });
+      res.render('livestream', { program: { id: doc._id, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
     });
   });
   /*io.sockets.on('connection', function(socket){
@@ -76,9 +76,9 @@ var init = exports.init = function (config) {
   });*/
 
   app.get('/code', function(req, res){
-    res.setHeader('Content-Type', 'application/json');
     if(req.query['id']){
       blockcode.blockcode.findById(req.query['id'], function(err, block){
+        res.setHeader('Content-Type', 'application/json');
         res.send({ xml: block.xml });
       });
     }
