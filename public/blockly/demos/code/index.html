@@ -188,11 +188,27 @@ function restore_blocks() {
 function save() {
   var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   var data = Blockly.Xml.domToText(xml);
+  var code = Blockly.Generator.workspaceToCode('JavaScript');
+
+  jQuery.ajax({
+    type: 'POST',
+    url: '/code',
+    data: { js: code, xml: data, unique: Math.random() + "-" + Math.random() },
+    success: function(response){
+      //console.log('go');
+      window.location = "/blockly/demos/code/index.html?id=" + response.id;
+    },
+    error: function(e){
+      var response = JSON.parse(e.responseText);
+      window.location = "/blockly/demos/code/index.html?id=" + response.id;
+    },
+    dataType: 'text/javascript'
+  });
 
   // Store data in blob.
-  var builder = new BlobBuilder();
-  builder.append(data);
-  saveAs(builder.getBlob('text/plain;charset=utf-8'), 'block.xml');
+  //var builder = new BlobBuilder();
+  //builder.append(data);
+  //saveAs(builder.getBlob('text/plain;charset=utf-8'), 'block.xml');
 };
 
 /**
