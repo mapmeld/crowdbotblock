@@ -86,6 +86,7 @@ var init = exports.init = function (config) {
       updated: new Date()
     });
     myblock.save(function(err){
+      res.setHeader('Content-Type', 'application/json');
       res.send({ id: (myblock._id || "") });
     });
   });

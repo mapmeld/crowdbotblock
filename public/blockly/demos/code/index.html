@@ -136,6 +136,9 @@ function runJS() {
       console.log('go');
       window.location = "/livestream";
     },
+    error: function(e){
+      console.log(e);
+    },
     dataType: 'text/javascript'
   });
   alert("CrowdBot is currently offline. Check http://crowdbotblock.heroku.com for livestream details.");
