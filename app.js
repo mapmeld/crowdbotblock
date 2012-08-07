@@ -65,7 +65,8 @@ var init = exports.init = function (config) {
   });
   app.get('/livestream', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
-      res.render('livestream', { program: { id: doc._id, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
+      res.render('livestream', { program: { id: "", js: "" } });
+      //{ id: doc._id, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
     });
   });
   /*io.sockets.on('connection', function(socket){
