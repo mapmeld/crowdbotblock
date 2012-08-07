@@ -1,4 +1,5 @@
 if(getURLParameter("id") != "null"){
+  document.getElementById("wait").style.display = "block";
   document.getElementById("myblockview").href = "/blockly/demos/code/index.html?id=" + getURLParameter("id");
   document.getElementById("myblocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=Tweet%20Your%20Program";
   if(nowid != getURLParameter("id")){
