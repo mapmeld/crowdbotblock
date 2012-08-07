@@ -75,6 +75,14 @@ var init = exports.init = function (config) {
     });
   });*/
 
+  app.get('/code', function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    if(req.query['id']){
+      blockcode.blockcode.findById(req.query['id'], function(err, block){
+        res.send({ xml: block.xml });
+      });
+    }
+  });
   app.post('/code', function(req, res){
     var code = req.body.js;
     var blocks = req.body.xml;

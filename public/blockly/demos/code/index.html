@@ -133,15 +133,16 @@ function runJS() {
     url: '/code',
     data: { js: code, xml: data, unique: Math.random() + "-" + Math.random() },
     success: function(response){
-      console.log('go');
-      window.location = "/livestream";
+      //console.log('go');
+      window.location = "/livestream?id=" + response.id;
     },
     error: function(e){
-      console.log(e);
+      var response = JSON.parse(e.responseText);
+      window.location = "/livestream?id=" + response.id;
     },
     dataType: 'text/javascript'
   });
-  alert("CrowdBot is currently offline. Check http://crowdbotblock.heroku.com for livestream details.");
+  //alert("CrowdBot is currently offline. Check http://crowdbotblock.heroku.com for livestream details.");
 }
 
 /**
@@ -154,13 +155,30 @@ function backup_blocks() {
   }
 }
 
+function getURLParameter(name) {
+  return decodeURIComponent(
+    (location.search.match(RegExp("[?|&]"+name+'=(.+?)(&|$)'))||[,null])[1]
+  );  
+}
+
 /**
  * Restore code blocks from localStorage.
  */
 function restore_blocks() {
-  if ('localStorage' in window && window.localStorage.blocks) {
-    var xml = Blockly.Xml.textToDom(window.localStorage.blocks);
-    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+  if (getURLParameter("id")){
+    // attempt load from server
+    $.getJSON("/code?id=" + getURLParameter("id"), function(data){
+      console.log(data.xml);
+      var xml = Blockly.Xml.textToDom(data.xml);
+      Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+    });
+  }
+  else{
+    // attempt load from local storage
+    if ('localStorage' in window && window.localStorage.blocks) {
+      var xml = Blockly.Xml.textToDom(window.localStorage.blocks);
+      Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+    }
   }
 }
 
