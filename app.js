@@ -77,12 +77,16 @@ var init = exports.init = function (config) {
 
   app.post('/code', function(req, res){
     var code = req.body.js;
+    var blocks = req.body.xml;
+    var unique = req.body.unique;
     var myblock = new blockcode.blockcode({
       js: code,
+      xml: blocks,
+      unique: unique,
       updated: new Date()
     });
     myblock.save(function(err){
-      res.send("console.log('all good');");
+      res.send({ id: (myblock._id || "") });
     });
   });
   app.post('/speak', function(req, res){
@@ -103,7 +107,7 @@ var init = exports.init = function (config) {
   app.get('/latest', function(req, res){
     blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
       if(io && io.sockets && req.query['lastid'] != doc._id){
-        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") });
+        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), unique: doc.unique });
       }
       res.send(doc);
     });

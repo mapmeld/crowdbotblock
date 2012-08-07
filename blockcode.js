@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
 var BlockCodeSchema = new Schema({
   js: String,
+  xml: String,
   updated: Date
 });
 
