@@ -12,7 +12,7 @@ That code is then transferred to JavaScript which can be run by a node server wi
 
 ## Click 'Send' and Watch Live
 
-Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web. Socket.io makes it possible to see the running program in real time.
+Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web. Socket.io makes it possible to see the code and data stream in real time.
 
 <img src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg"/>
 
