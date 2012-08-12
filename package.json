@@ -14,8 +14,8 @@
     , "socket.io": ">= 0.9.9"
   },
   "engines": {
-        "node": "0.6.X",
-        "npm":  "1.1.x"
+        "node": ">= 0.6.X",
+        "npm":  ">= 1.1.x"
   }, "devDependencies": {
       "mocha": ">=0.11.0"
     , "should": ">=0.5.1"
