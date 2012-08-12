@@ -3,7 +3,7 @@
   , "version": "0.0.1"
   , "private": false
   , "dependencies": {
-      "express": ">= 2.5.8"
+      "express": "2.5.8"
     , "jade": ">= 0.0.1"
     , "mongoose-auth": ">=0.0.11"
     , "mongoose": ">=2.5.1"
@@ -15,7 +15,7 @@
   },
   "engines": {
         "node": "0.6.X",
-        "npm":  "1.1.x"
+        "npm":  "1.0.x"
   }, "devDependencies": {
       "mocha": ">=0.11.0"
     , "should": ">=0.5.1"
