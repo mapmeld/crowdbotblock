@@ -21,7 +21,7 @@ CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which
 
 Future plans:
 <ul>
-<li>Use socket.io to stream data and console.log messages</li>
+<li>Share a livestream link which adds your program to the cure</li>
 <li>Tweet or e-mail users when their code runs</li>
 <li>Archive each user's code and results</li>
 </ul>
@@ -33,6 +33,8 @@ Blockly is an open-source, drag-and-drop programming environment from Google. It
 In addition to the changes made for CrowdBotBlock, you can [write your own blocks for Blockly](http://code.google.com/p/blockly/wiki/DefiningBlocks).
 
 See more on the Google Code page for [Blockly](http://code.google.com/p/blockly/).
+
+Blockly is also running server-side to convert users' block XML to JavaScript. This ensures that every line of code run on the host computer comes from a block. We're still in alpha mode though, so, no security guarantees!
 
 # About Johnny-Five
 
@@ -52,7 +54,7 @@ For more details, please see this [blog post](http://blog.beyondfog.com/?p=222) 
  
 1) Do a git clone:
 
-    git clone git@github.com:mapmeld/crowdbotblock.git
+    git clone git://github.com/mapmeld/crowdbotblock.git
     
 2) cd into the project directory and then install the necessary node modules:
 
