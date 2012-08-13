@@ -23,7 +23,7 @@
  */
 
 // Top level object for Blockly.
-exports.Blockly = {};
+var Blockly = {};
 
 /**
  * Path to Blockly's directory.  Can be relative, absolute, or remote.
@@ -538,3 +538,5 @@ Blockly.setMainWorkspaceMetrics = function(xyRatio) {
 Blockly.cssLoaded = function() {
   Blockly.Toolbox && Blockly.Toolbox.redraw();
 };
+
+exports.Blockly = Blockly;
