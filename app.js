@@ -118,32 +118,12 @@ var init = exports.init = function (config) {
       if(io && io.sockets && req.query['lastid'] != doc._id){
         io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), unique: doc.unique });
       }
-try{
-  var Blockly = require("./blocklyserver/blockly_full.js");
-  //var JSGenerator = require("./blocklyserver/javascript.js");
-  //var JSControl = require("./blocklyserver/jscontrol.js");
-  //var JSLogic = require("./blocklyserver/jslogic.js");
-  //var JSMath = require("./blocklyserver/jsmath.js");
-  //var JSText = require("./blocklyserver/jstext.js");
-  //var JSLists = require("./blocklyserver/jslists.js");
-  //var JSVariables = require("./blocklyserver/jsvariables.js");
-  //var JSProcedures = require("./blocklyserver/jsprocedures.js");
-  //var ENMessages = require("./blocklyserver/_messages.js");
-  //var CoControl = require("./blocklyserver/cocontrol.js");
-  //var CoLogic = require("./blocklyserver/cologic.js");
-  //var CoMath = require("./blocklyserver/comath.js");
-  //var CoText = require("./blocklyserver/cotext.js");
-  //var CoLists = require("./blocklyserver/colists.js");
-  //var CoVariables = require("./blocklyserver/covariables.js");
-  //var CoProcedures = require("./blocklyserver/coprocedures.js");
-  var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
-  Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
-  var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
-  doc.js = code;
-}
-catch(e){
-  console.log(e);
-}
+      var Blockly = require("./blocklyserver/blockly_mini.js");
+      var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
+      Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
+      Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
+      var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
+      doc.js = code;
       res.send(doc);
     });
   });
