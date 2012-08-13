@@ -6,7 +6,7 @@ Suppose you put some blocks together like this:
 
 <img src="http://i.imgur.com/wDxAi.png"/>
 
-That code is then transferred to JavaScript which can be run by a node server with the johnny-five module:
+That code is then transferred to JavaScript which can be run by a node server using the johnny-five module:
 
 <img src="http://i.imgur.com/0SXPJ.png"/>
 
@@ -19,6 +19,7 @@ Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and re
 ## Roadmap
 CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C. The roadmap to making similar and then brand new features:
 
+Future plans:
 <ul>
 <li>Use socket.io to stream data and console.log messages</li>
 <li>Tweet or e-mail users when their code runs</li>
