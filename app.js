@@ -119,7 +119,7 @@ var init = exports.init = function (config) {
         io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), unique: doc.unique });
       }
 try{
-  var Blockly = require("./blocklyserver/blockly_compressed.js");
+  var Blockly = require("./blocklyserver/blockly_full.js");
   var JSGenerator = require("./blocklyserver/javascript.js");
   var JSControl = require("./blocklyserver/jscontrol.js");
   var JSLogic = require("./blocklyserver/jslogic.js");
