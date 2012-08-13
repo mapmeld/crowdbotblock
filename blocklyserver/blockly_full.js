@@ -1,3 +1,6 @@
+// replace browser DOMParser
+var DOMParser = require('xmldom').DOMParser;
+
 /**
  * Visual Blocks Editor
  *

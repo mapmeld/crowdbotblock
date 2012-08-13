@@ -12,6 +12,7 @@
     , "connect-mongo": ">=0.1.9"
     , "connect": ">= 1.8.5 < 2"
     , "socket.io": ">= 0.9.9"
+    , "xmldom": "0.1.11"
   },
   "engines": {
         "node": "0.6.X",
