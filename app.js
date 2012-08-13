@@ -123,7 +123,7 @@ var init = exports.init = function (config) {
       Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
       Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
       var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
-      res.send({ js: code, xml: doc.xml });
+      res.send({ _id: doc._id, js: code, xml: doc.xml });
     });
   });
 
