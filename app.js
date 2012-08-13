@@ -120,22 +120,22 @@ var init = exports.init = function (config) {
       }
 try{
   var Blockly = require("./blocklyserver/blockly_full.js");
-  var JSGenerator = require("./blocklyserver/javascript.js");
-  var JSControl = require("./blocklyserver/jscontrol.js");
-  var JSLogic = require("./blocklyserver/jslogic.js");
-  var JSMath = require("./blocklyserver/jsmath.js");
-  var JSText = require("./blocklyserver/jstext.js");
-  var JSLists = require("./blocklyserver/jslists.js");
-  var JSVariables = require("./blocklyserver/jsvariables.js");
-  var JSProcedures = require("./blocklyserver/jsprocedures.js");
-  var ENMessages = require("./blocklyserver/_messages.js");
-  var CoControl = require("./blocklyserver/cocontrol.js");
-  var CoLogic = require("./blocklyserver/cologic.js");
-  var CoMath = require("./blocklyserver/comath.js");
-  var CoText = require("./blocklyserver/cotext.js");
-  var CoLists = require("./blocklyserver/colists.js");
-  var CoVariables = require("./blocklyserver/covariables.js");
-  var CoProcedures = require("./blocklyserver/coprocedures.js");
+  //var JSGenerator = require("./blocklyserver/javascript.js");
+  //var JSControl = require("./blocklyserver/jscontrol.js");
+  //var JSLogic = require("./blocklyserver/jslogic.js");
+  //var JSMath = require("./blocklyserver/jsmath.js");
+  //var JSText = require("./blocklyserver/jstext.js");
+  //var JSLists = require("./blocklyserver/jslists.js");
+  //var JSVariables = require("./blocklyserver/jsvariables.js");
+  //var JSProcedures = require("./blocklyserver/jsprocedures.js");
+  //var ENMessages = require("./blocklyserver/_messages.js");
+  //var CoControl = require("./blocklyserver/cocontrol.js");
+  //var CoLogic = require("./blocklyserver/cologic.js");
+  //var CoMath = require("./blocklyserver/comath.js");
+  //var CoText = require("./blocklyserver/cotext.js");
+  //var CoLists = require("./blocklyserver/colists.js");
+  //var CoVariables = require("./blocklyserver/covariables.js");
+  //var CoProcedures = require("./blocklyserver/coprocedures.js");
   var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
   Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
   var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
