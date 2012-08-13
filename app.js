@@ -64,7 +64,7 @@ var init = exports.init = function (config) {
     res.render('homepage');
   });
   app.get('/livestream', function(req, res){
-    blockcode.blockcode.findOne().sort('updated', -1).exec(function(err, doc){
+    blockcode.blockcode.findOne().sort('-updated').exec(function(err, doc){
       res.render('livestream', { program: { id: doc._id, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
     });
   });
