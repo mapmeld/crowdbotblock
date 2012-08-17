@@ -118,7 +118,7 @@ var init = exports.init = function (config) {
   /* /latest has been set to show the running program */
   app.get('/latest', function(req, res){
     blockcode.blockcode.findOne({ status: 'downloaded' }).sort('-updated').exec(function(err, doc){
-      var Blockly = require("./blocklyserver/blockly_mini.js");
+      var Blockly = require("./blocklyserver/blockly_full.js");
       var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
       Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
       Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
@@ -137,7 +137,7 @@ var init = exports.init = function (config) {
       }
 
       // generate code from XML
-      var Blockly = require("./blocklyserver/blockly_mini.js");
+      var Blockly = require("./blocklyserver/blockly_full.js");
       var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
       Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
       Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
