@@ -6,6 +6,7 @@ if(getURLParameter("id") != "null"){
     document.getElementById("wait-inner").innerHTML = "Program is running.";
   }
 }
+document.getElementById("blocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + nowid) + "&text=Drop%20code%20into%20a%20livestreamed%20Arduino%20robot!%20";
 
 function getURLParameter(name) {
   return decodeURIComponent(
