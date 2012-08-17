@@ -21,6 +21,7 @@ socket.on('newprogram', function(data){
       document.getElementById("wait").style.display = "none";
     }
   }
+  document.getElementById("codename").innerHTML = data.name;
   document.getElementById("codecontainer").innerHTML = "<pre id='livecode' class='brush: js'>" + data.js + "</pre>";
   document.getElementById("blockview").href = "/blockly/demos/code/index.html?id=" + data.id;
   document.getElementById("blocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=Tweet%20this%20Program";

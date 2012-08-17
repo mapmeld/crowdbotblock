@@ -47,7 +47,7 @@ var child_process = null;
 
 # while loops < 175: # 175 loops x 45 seconds > 2 hours running time
 while loops < 175:
-    program = json.loads(urllib.urlopen(appinstance + '/latest?lastid=' + lastid).read())
+    program = json.loads(urllib.urlopen(appinstance + '/cue?lastid=' + lastid).read())
     
     if(program["_id"] != lastid):
         print program["js"]
@@ -80,7 +80,7 @@ while loops < 175:
         saveprogram.write(introcode + "\n" + program["js"])
         saveprogram.close()
 
-		# program stops running after a minute
+		# program stops running after a minute/
         response = os.system('node submitted-crowdbotblock.js')
         # response could feasibly be checked for compilation / upload errors
         print response

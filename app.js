@@ -86,11 +86,10 @@ var init = exports.init = function (config) {
   app.post('/code', function(req, res){
     var code = req.body.js;
     var blocks = req.body.xml;
-    var unique = req.body.unique;
     var myblock = new blockcode.blockcode({
       js: code,
       xml: blocks,
-      unique: unique,
+      status: 'cue',
       updated: new Date()
     });
     myblock.save(function(err){
@@ -113,17 +112,40 @@ var init = exports.init = function (config) {
     return src;
   };
   
+  /* /latest has been set to show the running program */
   app.get('/latest', function(req, res){
-    blockcode.blockcode.findOne().sort('-updated').exec(function(err, doc){
-      if(io && io.sockets && req.query['lastid'] != doc._id){
-        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), unique: doc.unique });
-      }
+    blockcode.blockcode.findOne({ status: 'downloaded' }).sort('-updated').exec(function(err, doc){
       var Blockly = require("./blocklyserver/blockly_mini.js");
       var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
       Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
       Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
       var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
-      res.send({ _id: doc._id, js: code, xml: doc.xml });
+      res.send({ _id: doc._id, js: code, name: doc.name });
+    });
+  });
+
+  /* /cue has been set to show the next program in the cue and make it active */
+  app.get('/cue', function(req, res){
+    blockcode.blockcode.findOne({ status: 'cue' }).sort('updated').exec(function(err, doc){
+      // generate code from XML
+      var Blockly = require("./blocklyserver/blockly_mini.js");
+      var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
+      Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
+      Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
+      var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
+
+      // send new code to streamers
+      if(io && io.sockets && req.query['lastid'] != doc._id){
+        io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), name: doc.name, id: doc._id });
+      }
+
+      // update doc
+      doc.status = 'downloaded';
+      doc.updated = new Date();
+      doc.save(function(err){ });
+
+      // return code to host
+      res.send({ _id: doc._id, js: code });
     });
   });
 
