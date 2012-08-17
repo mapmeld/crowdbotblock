@@ -20,25 +20,26 @@ var console = {
     req.end();
   }
 };
-if(1==1){
-  var fs = null;
-  var process = null;
-  var prompt = null;
-  var util = null;
-  var http = null;
-  var child_process = null;
+var fs = null;
+//var process = null;
+var prompt = null;
+//var util = null;
+var http = null;
+var child_process = null;
 
 var five = require('johnny-five');
 var board = new five.Board();
 board.on('ready', function(){
 
 
-console.log('hello');
-(new five.Led(2)).on();
-board.wait(3000, function(){
-  console.log('light off');
+var bumper0 = new five.Button(0);
+bumper0.on("hit", function(){
+  (new five.Led(2)).on();
+  (new five.Led(3)).off();
+}).on("release", function(){
+  (new five.Led(3)).on();
   (new five.Led(2)).off();
-});
+
+});(new five.Led(13)).strobe();
 
 });
-}

@@ -34,16 +34,19 @@ introcode = '''var console = {
     req.end();
   }
 };
+setTimeout(function(){
+  process.exit(code=0);
+}, 60000);
 var fs = null;
-//var process = null;
+var process = null;
 var prompt = null;
-//var util = null;
+var util = null;
 var http = null;
 var child_process = null;
 '''
 
-# while loops < 125: # 125 loops x 1 minute > 2 hours running time
-while loops < 125:
+# while loops < 175: # 175 loops x 45 seconds > 2 hours running time
+while loops < 175:
     program = json.loads(urllib.urlopen(appinstance + '/latest?lastid=' + lastid).read())
     
     if(program["_id"] != lastid):
@@ -77,14 +80,12 @@ while loops < 125:
         saveprogram.write(introcode + "\n" + program["js"])
         saveprogram.close()
 
+		# program stops running after a minute
         response = os.system('node submitted-crowdbotblock.js')
         # response could feasibly be checked for compilation / upload errors
         print response
-
-        # let program run for two minutes
-        time.sleep(120)
     else:
-        # wait 60 seconds and look for a new pending program
+        # wait 45 seconds and look for a new pending program
         print "no new program"
-        time.sleep(60)
+        time.sleep(45)
     loops = loops + 1
