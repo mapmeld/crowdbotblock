@@ -408,8 +408,6 @@ Blockly.Language.sensorval = {
     this.setColour(250);
     this.appendTitle("Read");
     this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
     this.setOutput(true, Number);
     this.setTooltip("Read Sensor");
   }

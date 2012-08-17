@@ -3672,8 +3672,6 @@ Blockly.Language.sensorval = {
     this.setColour(250);
     this.appendTitle("Read");
     this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
     this.setOutput(true, Number);
     this.setTooltip("Read Sensor");
   }
@@ -4041,7 +4039,7 @@ Blockly.JavaScript.sensorinit = function(){
 Blockly.JavaScript.sensorval = function(){
   var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   pin *= 1;
-  return '(sensor' + pin + '_val)';
+  return ['(sensor' + pin + '_val)', Blockly.JavaScript.ORDER_MEMBER];
 };
 
 Blockly.JavaScript.text_prompt = function() {

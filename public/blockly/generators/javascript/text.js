@@ -230,6 +230,7 @@ Blockly.JavaScript.button = function() {
   argument0 *= 1;
   return 'var bumper' + argument0 + ' = new five.Button(' + argument0 + ');\nbumper' + argument0 + '.on("hit", function(){\n' + branch0 + '}).on("release", function(){\n' + branch1 + '\n});';
 };
+/*
 // Piezo init, tone, and fade
 Blockly.JavaScript.piezo_init = function(){
   var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
@@ -254,6 +255,7 @@ Blockly.JavaScript.piezo_fade = function(){
   time *= 1;
   return 'piezo' + pin + '.fade(' + volume + ',' + time + ');\n';
 };
+*/
 // Sensor read
 Blockly.JavaScript.sensorinit = function(){
   var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
