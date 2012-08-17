@@ -202,7 +202,7 @@ function save() {
     },
     error: function(e){
       var response = JSON.parse(e.responseText);
-      alert("Your code is saved to http://crowdbotblock.heroku.com" + "/blockly/demos/code/index.html?id=" + response.id);
+      //alert("Your code is saved to http://crowdbotblock.heroku.com/blockly/demos/code/index.html?id=" + response.id);
       window.location = "/blockly/demos/code/index.html?id=" + response.id;
     },
     dataType: 'text/javascript'
