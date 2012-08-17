@@ -2,8 +2,8 @@ if(getURLParameter("id") != "null"){
   document.getElementById("wait").style.display = "block";
   document.getElementById("myblockview").href = "/blockly/demos/code/index.html?id=" + getURLParameter("id");
   document.getElementById("myblocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=See%20my%20program%20run%20on%20a%20livestreamed%20Arduino%20robot!%20";
-  if(nowid != getURLParameter("id")){
-    document.getElementById("wait-inner").innerHTML = "Program is loaded.";
+  if(nowid == getURLParameter("id")){
+    document.getElementById("wait-inner").innerHTML = "Program is running.";
   }
 }
 
