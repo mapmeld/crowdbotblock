@@ -1,7 +1,7 @@
 if(getURLParameter("id") != "null"){
   document.getElementById("wait").style.display = "block";
   document.getElementById("myblockview").href = "/blockly/demos/code/index.html?id=" + getURLParameter("id");
-  document.getElementById("myblocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=Tweet%20Your%20Program";
+  document.getElementById("myblocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=See%20my%20program%20run%20on%20a%20livestreamed%20Arduino%20robot!%20";
   if(nowid != getURLParameter("id")){
     document.getElementById("wait-inner").innerHTML = "Program is loaded.";
   }
@@ -24,7 +24,7 @@ socket.on('newprogram', function(data){
   document.getElementById("codename").innerHTML = data.name;
   document.getElementById("codecontainer").innerHTML = "<pre id='livecode' class='brush: js'>" + data.js + "</pre>";
   document.getElementById("blockview").href = "/blockly/demos/code/index.html?id=" + data.id;
-  document.getElementById("blocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=Tweet%20this%20Program";
+  document.getElementById("blocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + getURLParameter("id")) + "&text=Drop%20code%20into%20a%20livestreamed%20Arduino%20robot!%20";
 
   setTimeout(function(){
     SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
