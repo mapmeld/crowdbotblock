@@ -20,10 +20,13 @@ var console = {
     req.end();
   }
 };
+setTimeout(function(){
+  process.exit(code=0);
+}, 60000);
 var fs = null;
-//var process = null;
+var process = null;
 var prompt = null;
-//var util = null;
+var util = null;
 var http = null;
 var child_process = null;
 
@@ -32,14 +35,6 @@ var board = new five.Board();
 board.on('ready', function(){
 
 
-var bumper0 = new five.Button(0);
-bumper0.on("hit", function(){
-  (new five.Led(2)).on();
-  (new five.Led(3)).off();
-}).on("release", function(){
-  (new five.Led(3)).on();
-  (new five.Led(2)).off();
-
-});(new five.Led(13)).strobe();
+(new five.Led(5)).strobe();
 
 });
