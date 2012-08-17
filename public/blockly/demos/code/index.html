@@ -189,8 +189,7 @@ function save() {
   var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   var data = Blockly.Xml.domToText(xml);
   var code = Blockly.Generator.workspaceToCode('JavaScript');
-  var codename = prompt("Please name your program:");
-  if(!codename){ return; }
+  var codename = document.getElementById("codename").value;
 
   jQuery.ajax({
     type: 'POST',
@@ -385,6 +384,8 @@ function discard() {
             <td class="tabmin">&nbsp;</td>
             <td id="tab_xml" class="taboff" onclick="tabClick(this.id)">XML</td>
             <td class="tabmax">
+              <label>Program Name:</label>
+              <input id="codename"/>
               <button onclick="discard()">Clear</button>
               <button onclick="save()">Save to XML</button>
               <button id="fakeload">Load from XML</button>
