@@ -127,6 +127,12 @@ var init = exports.init = function (config) {
   /* /cue has been set to show the next program in the cue and make it active */
   app.get('/cue', function(req, res){
     blockcode.blockcode.findOne({ status: 'cue' }).sort('updated').exec(function(err, doc){
+      // if code is unchanged, send only the lastid
+      if(!doc || doc._id == req.query['lastid']){
+        res.send({ _id: req.query['lastid'] });
+        return;
+      }
+
       // generate code from XML
       var Blockly = require("./blocklyserver/blockly_mini.js");
       var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
@@ -135,11 +141,11 @@ var init = exports.init = function (config) {
       var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
 
       // send new code to streamers
-      if(io && io.sockets && req.query['lastid'] != doc._id){
+      if(io && io.sockets){
         io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), name: doc.name, id: doc._id });
       }
 
-      // update doc
+      // update doc status
       doc.status = 'downloaded';
       doc.updated = new Date();
       doc.save(function(err){ });
