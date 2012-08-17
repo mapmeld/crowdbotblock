@@ -6,6 +6,7 @@ var BlockCodeSchema = new Schema({
   js: String,
   xml: String,
   status: String,
+  name: String,
   updated: Date
 });
 
