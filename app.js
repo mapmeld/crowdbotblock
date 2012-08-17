@@ -79,7 +79,7 @@ var init = exports.init = function (config) {
     if(req.query['id']){
       blockcode.blockcode.findById(req.query['id'], function(err, block){
         res.setHeader('Content-Type', 'application/json');
-        res.send({ xml: block.xml });
+        res.send({ xml: block.xml, name: block.name });
       });
     }
   });
@@ -99,6 +99,7 @@ var init = exports.init = function (config) {
       res.send({ id: (myblock._id || "") });
     });
   });
+
   app.post('/speak', function(req, res){
     var message = req.body.info;
     if(io && io.sockets){
