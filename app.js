@@ -86,7 +86,7 @@ var init = exports.init = function (config) {
   app.post('/code', function(req, res){
     var code = req.body.js;
     var blocks = req.body.xml;
-    var name = replaceAll(replaceAll(req.body.name, "<", "&lt;"), ">", "&gt;");
+    var codename = replaceAll(replaceAll(req.body.name, "<", "&lt;"), ">", "&gt;");
     var myblock = new blockcode.blockcode({
       js: code,
       xml: blocks,
