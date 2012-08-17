@@ -3653,6 +3653,31 @@ Blockly.Language.text_off = {
     this.setTooltip("Off");
   }
 };
+Blockly.Language.sensorinit = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Init");
+    this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Init Sensor");
+  }
+};
+Blockly.Language.sensorval = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Read");
+    this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setOutput(true, Number);
+    this.setTooltip("Read Sensor");
+  }
+};
 // Servo init, min, max, center, move, sweep
 Blockly.Language.servo_init = {
   category: "Motor",
@@ -4007,6 +4032,16 @@ Blockly.JavaScript.piezo_fade = function(){
   var time = Blockly.JavaScript.valueToCode(this, 'TIME', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   time *= 1;
   return 'piezo' + pin + '.fade(' + volume + ',' + time + ');\n';
+};
+Blockly.JavaScript.sensorinit = function(){
+  var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  pin *= 1;
+  return 'var sensor' + pin +'_val = 0;\nvar sensor' + pin + ' = new five.Sensor({ pin: "A' + pin + '", freq: 250 });\nboard.repl.inject({ sensor: sensor' + pin + ' });\nsensor.scale([ 0, 255 ]).on("read", function(){\n  sensor' + pin + '_val = this.scaled;\n});\n';
+};
+Blockly.JavaScript.sensorval = function(){
+  var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  pin *= 1;
+  return '(sensor' + pin + '_val)';
 };
 
 Blockly.JavaScript.text_prompt = function() {

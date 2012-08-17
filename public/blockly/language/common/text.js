@@ -387,6 +387,35 @@ Blockly.Language.button = {
     this.setTooltip("Button");
   }
 };
+
+// sensor init and val return
+Blockly.Language.sensorinit = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Init");
+    this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Init Sensor");
+  }
+};
+Blockly.Language.sensorval = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Read");
+    this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setOutput(true, Number);
+    this.setTooltip("Read Sensor");
+  }
+};
+
+/*
 // piezo init and tone
 Blockly.Language.piezo_init = {
   category: "Sound",
@@ -427,7 +456,7 @@ Blockly.Language.piezo_fade = {
     this.setNextStatement(true);
     this.setTooltip("Piezo Fade");
   }
-};
+}; */
 
 Blockly.Language.text_prompt = {
   // Prompt function.

@@ -37,12 +37,6 @@ introcode = '''var console = {
 setTimeout(function(){
   process.exit(code=0);
 }, 60000);
-var fs = null;
-var process = null;
-var prompt = null;
-var util = null;
-var http = null;
-var child_process = null;
 '''
 
 # while loops < 175: # 175 loops x 45 seconds > 2 hours running time

@@ -16,7 +16,7 @@ function getURLParameter(name) {
 
 var socket = io.connect(window.location.hostname);
 socket.on('newprogram', function(data){
-  //console.log(data.js);
+  console.log(data);
   if(getURLParameter("id") != "null"){
     if(data.id == getURLParameter("id")){
       document.getElementById("wait").style.display = "none";

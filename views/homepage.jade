@@ -13,8 +13,31 @@ div.navbar
 div.container
   .row
     .hero-unit
+      div(style="float:right;")
+        h4 Example Code
+        table
+          tr
+            td
+              a(href='/blockly/demos/code/index.html?id=502ecf0bf123840200000006')
+                strong Blink LEDs
+                br
+                img(src='http://i.imgur.com/WOV29.png', width='100')
+            td
+              a(href='/blockly/demos/code/index.html?id=502ecf2af123840200000007')
+                strong Move Motor
+                br
+                img(src='http://i.imgur.com/K5M5x.png', width='100')
+          tr
+            td
+              a(href='/blockly/demos/code/index.html')
+                strong Read Sensor
+            td
+              a(href='/blockly/demos/code/index.html?id=502ed0adf123840200000009')
+                strong Light Show
+                br
+                img(src='http://i.imgur.com/YaFzd.png', width='100')
       h1 CrowdBotBlock
-      h3 Drag and drop to control a robot over the web.
+      h3 Drag and drop code into a livestreamed robot.
   .row
     .span4
       h3 Arduino
@@ -24,13 +47,14 @@ div.container
     .span4
       h3 Blockly
       p The drag-and-drop code editor powering CrowdBotBlock is based on Blockly, an open-source project from Google.
-      a(href="http://code.google.com/p/blockly/", style="color:blue;") Learn more
+      a(href="http://code.google.com/p/blockly/", style="color:blue;") Blockly Project
       br
       img(src="http://p.twimg.com/AzkUk0jCYAAUvT7.png")
     .span4
       h3 node.js and johnny-five
       p Node.js is a platform for writing a web server in JavaScript.
       p Rick Waldron's johnny-five module lets you control an attached Arduino from node.js
+      a(href="http://www.youtube.com/watch?v=jf-cEB3U2UQ") johnny-five demo
       br
       img(src="http://i.imgur.com/Wb3Xn.png")
 

@@ -254,6 +254,17 @@ Blockly.JavaScript.piezo_fade = function(){
   time *= 1;
   return 'piezo' + pin + '.fade(' + volume + ',' + time + ');\n';
 };
+// Sensor read
+Blockly.JavaScript.sensorinit = function(){
+  var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  pin *= 1;
+  return 'var sensor' + pin +'_val = 0;\nvar sensor' + pin + ' = new five.Sensor({ pin: "A' + pin + '", freq: 250 });\nboard.repl.inject({ sensor: sensor' + pin + ' });\nsensor.scale([ 0, 255 ]).on("read", function(){\n  sensor' + pin + '_val = this.scaled;\n});\n';
+};
+Blockly.JavaScript.sensorval = function(){
+  var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  pin *= 1;
+  return '(sensor' + pin + '_val)';
+};
 
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.

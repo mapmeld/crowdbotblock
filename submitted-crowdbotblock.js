@@ -23,18 +23,28 @@ var console = {
 setTimeout(function(){
   process.exit(code=0);
 }, 60000);
-var fs = null;
-var process = null;
-var prompt = null;
-var util = null;
-var http = null;
-var child_process = null;
 
 var five = require('johnny-five');
 var board = new five.Board();
 board.on('ready', function(){
 
 
-(new five.Led(5)).strobe();
+console.log('LightShow');
+(new five.Led(2)).on();
+board.wait(750, function(){
+  (new five.Led(4)).on();
+  board.wait(750, function(){
+    (new five.Led(6)).on();
+    board.wait(750, function(){
+      (new five.Led(8)).on();
+      board.wait(750, function(){
+        (new five.Led(10)).on();
+        board.wait(750, function(){
+          (new five.Led(8)).off();
+        });
+      });
+    });
+  });
+});
 
 });
