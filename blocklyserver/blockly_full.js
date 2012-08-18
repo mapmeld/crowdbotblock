@@ -4106,7 +4106,7 @@ Blockly.JavaScript.sensorval = function(){
 };
 // Robot wiring config
 Blockly.JavaScript.selectled = function(){
-  var myled = Blockly.JavaScript.valueToCode(this, 'LED', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var myled = this.getTitleValue('LED');
   var ledpin = 0;
   switch(myled){
     case "PURPLE":
