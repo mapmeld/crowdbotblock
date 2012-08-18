@@ -8,51 +8,50 @@ div.navbar
     
       a.brand(href="/blockly/demos/code/index.html", style="text-transform:none;") Code Editor
       a.brand(href="/livestream", style="text-transform:none;") Livestream
-      a.brand(href="https://mozillaignite.org/ideas/111/", style="text-transform:none;color:orange;") Support CrowdBot on Mozilla Ignite!
+      a.brand(href="https://mozillaignite.org/ideas/111/", style="text-transform:none;color:orange;") Support CrowdBot's Entry in Mozilla Ignite!
 
 div.container
   .row
-    .hero-unit
-      div(style="float:right;margin-top:-55px;")
+    .span8
+      .hero-unit
+        h1 CrowdBot
+        h3 Drag and drop code into a livestreamed robot.
+      div
         h4 Start Now
-        table
-          tr
-            td
-              a(href='/blockly/demos/code/index.html?id=502ecf0bf123840200000006')
-                strong Blink LEDs
-                br
-                img(src='http://i.imgur.com/WOV29.png', width='100')
-            td
-              a(href='/blockly/demos/code/index.html?id=502ecf2af123840200000007')
-                strong Move Motor
-                br
-                img(src='http://i.imgur.com/K5M5x.png', width='100')
-          tr
-            td
-              a(href='/blockly/demos/code/index.html?id=502ede719c3b1e0200000001')
-                strong Read Sensor
-                br
-                img(src='http://i.imgur.com/ZhiG4.png', width='100')
-            td
-              a(href='/blockly/demos/code/index.html?id=502ed0adf123840200000009')
-                strong Light Show
-                br
-                img(src='http://i.imgur.com/YaFzd.png', width='100')
-      h1 CrowdBotBlock
-      h3 Drag and drop code into a livestreamed robot.
-  .row
+        a(href='/blockly/demos/code/index.html?id=502ff900c4b70b0200000001')
+          strong Blink LEDs
+          br
+          img(src='http://i.imgur.com/4ulgL.png')
+        hr
+        a(href='/blockly/demos/code/index.html?id=502ff97bc4b70b0200000002')
+          strong Move Motor
+          br
+          img(src='http://i.imgur.com/EJtiF.png')
+        hr
+        a(href='/blockly/demos/code/index.html?id=502ff9d1c4b70b0200000003')
+          strong Read Sensor
+          br
+          img(src='http://i.imgur.com/OS3sz.png')
+        hr
+        a(href='/blockly/demos/code/index.html?id=502ffa46c4b70b0200000005')
+          strong Light Show
+          br
+          img(src='http://i.imgur.com/uYafv.png')
+
     .span4
       h3 Arduino
       p Arduino is an open-source hardware controller which can make tons of robots. Right now we have a simple one that you can control over the web.
       a(href="http://arduino.cc", style="color:blue;") Arduino Project
       img(src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg")
-    .span4
+      hr
+
       h3 Blockly
       p The drag-and-drop code editor powering CrowdBotBlock is based on Blockly, an open-source project from Google.
       a(href="http://code.google.com/p/blockly/", style="color:blue;") Blockly Project
       br
       img(src="http://p.twimg.com/AzkUk0jCYAAUvT7.png")
-    .span4
+      hr
+
       h3 node.js and johnny-five
       p Node.js is a platform for writing a web server in JavaScript.
       p Rick Waldron's johnny-five module lets you control an attached Arduino from node.js
