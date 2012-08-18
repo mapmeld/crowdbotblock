@@ -3680,7 +3680,7 @@ Blockly.Language.sensorval = {
   }
 };
 // wiring objects
-Blockly.Language.selectled = function(){
+Blockly.Language.selectled = {
   category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
