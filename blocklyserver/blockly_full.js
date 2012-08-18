@@ -3709,7 +3709,7 @@ Blockly.Language.multimeter = {
   }
 };
 Blockly.Language.servopin = {
-  category: "Arduino",
+  category: "Motor",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);

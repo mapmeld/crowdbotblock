@@ -24,6 +24,20 @@
 
 if (!Blockly.Language) Blockly.Language = {};
 
+Blockly.Language.text_print = {
+  // Print statement.
+  category: Blockly.LANG_CATEGORY_TEXT,
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function() {
+    this.setColour(160);
+    this.appendTitle(Blockly.LANG_TEXT_PRINT_TITLE_PRINT);
+    this.appendInput('', Blockly.INPUT_VALUE, 'TEXT', null);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip(Blockly.LANG_TEXT_PRINT_TOOLTIP_1);
+  }
+};
+
 Blockly.Language.text = {
   // Text value.
   category: Blockly.LANG_CATEGORY_TEXT,
@@ -280,20 +294,6 @@ Blockly.Language.text_trim.OPERATORS =
     [[Blockly.LANG_TEXT_TRIM_OPERATOR_BOTH, 'BOTH'],
      [Blockly.LANG_TEXT_TRIM_OPERATOR_LEFT, 'LEFT'],
      [Blockly.LANG_TEXT_TRIM_OPERATOR_RIGHT, 'RIGHT']];
-
-Blockly.Language.text_print = {
-  // Print statement.
-  category: Blockly.LANG_CATEGORY_TEXT,
-  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
-  init: function() {
-    this.setColour(160);
-    this.appendTitle(Blockly.LANG_TEXT_PRINT_TITLE_PRINT);
-    this.appendInput('', Blockly.INPUT_VALUE, 'TEXT', null);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip(Blockly.LANG_TEXT_PRINT_TOOLTIP_1);
-  }
-};
 
 // text test for CrowdBotBlock
 Blockly.Language.text_strobe = {
