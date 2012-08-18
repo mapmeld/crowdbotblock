@@ -426,7 +426,7 @@ Blockly.Language.selectled = {
       [Blockly.LANG_ARDUINO_RED, 'RED']
     ];
     var menu = new Blockly.FieldDropdown(this.leds);
-    this.appendInput([menu, 'LED'], Blockly.INPUT_VALUE, 'TEXT', String);
+    this.appendTitle(menu, 'LED');
     this.appendTitle(" LED");
     this.setOutput(true, Number);
     this.setTooltip("Select LED");
