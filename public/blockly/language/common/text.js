@@ -332,6 +332,36 @@ Blockly.Language.text_off = {
     this.setTooltip("Off");
   }
 };
+
+Blockly.Language.selectled = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.leds = [
+      [Blockly.LANG_ARDUINO_PURPLE, 'PURPLE'],
+      [Blockly.LANG_ARDUINO_GREEN, 'GREEN'],
+      [Blockly.LANG_ARDUINO_BLUE, 'BLUE'],
+      [Blockly.LANG_ARDUINO_RED, 'RED']
+    ];
+    var menu = new Blockly.FieldDropdown(this.leds);
+    this.appendTitle(menu, 'LED');
+    this.appendTitle(" LED");
+    this.setOutput(true, Number);
+    this.setTooltip("Select LED");
+  }
+};
+Blockly.Language.multimeter = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Multimeter");
+    this.setOutput(true, Number);
+    this.setTooltip("Multimeter");
+  }
+};
+
 // Servo init, min, max, center, move, sweep
 Blockly.Language.servo_init = {
   category: "Motor",
@@ -356,6 +386,16 @@ Blockly.Language.servo_move = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Move Servo");
+  }
+};
+Blockly.Language.servopin = {
+  category: "Motor",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("My Servo");
+    this.setOutput(true, Number);
+    this.setTooltip("My Servo");
   }
 };
 // wait function
@@ -414,44 +454,6 @@ Blockly.Language.sensorval = {
 };
 
 // wiring objects
-Blockly.Language.selectled = {
-  category: "Arduino",
-  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
-  init: function(){
-    this.setColour(250);
-    this.leds = [
-      [Blockly.LANG_ARDUINO_PURPLE, 'PURPLE'],
-      [Blockly.LANG_ARDUINO_GREEN, 'GREEN'],
-      [Blockly.LANG_ARDUINO_BLUE, 'BLUE'],
-      [Blockly.LANG_ARDUINO_RED, 'RED']
-    ];
-    var menu = new Blockly.FieldDropdown(this.leds);
-    this.appendTitle(menu, 'LED');
-    this.appendTitle(" LED");
-    this.setOutput(true, Number);
-    this.setTooltip("Select LED");
-  }
-};
-Blockly.Language.multimeter = {
-  category: "Arduino",
-  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
-  init: function(){
-    this.setColour(250);
-    this.appendTitle("Multimeter");
-    this.setOutput(true, Number);
-    this.setTooltip("Multimeter");
-  }
-};
-Blockly.Language.servopin = {
-  category: "Arduino",
-  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
-  init: function(){
-    this.setColour(250);
-    this.appendTitle("My Servo");
-    this.setOutput(true, Number);
-    this.setTooltip("My Servo");
-  }
-};
 Blockly.Language.lightsensor = {
   category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
