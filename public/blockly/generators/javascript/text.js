@@ -267,6 +267,38 @@ Blockly.JavaScript.sensorval = function(){
   pin *= 1;
   return ['(sensor' + pin + '_val)', Blockly.JavaScript.ORDER_MEMBER];
 };
+// Robot wiring config
+Blockly.JavaScript.selectled = function(){
+  var myled = Blockly.JavaScript.valueToCode(this, 'LED', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var ledpin = 0;
+  switch(myled){
+    case "PURPLE":
+      ledpin = 2;
+      break;
+    case "GREEN":
+      ledpin = 4;
+      break;
+    case "BLUE":
+      ledpin = 6;
+      break;
+    case "RED":
+      ledpin = 10;
+      break;
+  }
+  return [ledpin, Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.multimeter = function(){
+  return ['8', Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.servopin = function(){
+  return ['9', Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.lightsensor = function(){
+  return ['0', Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.audioplug = function(){
+  return ['4', Blockly.JavaScript.ORDER_MEMBER];
+};
 
 Blockly.JavaScript.text_prompt = function() {
   // Prompt function.

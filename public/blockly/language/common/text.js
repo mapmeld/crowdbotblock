@@ -413,6 +413,66 @@ Blockly.Language.sensorval = {
   }
 };
 
+// wiring objects
+Blockly.Language.selectled = function(){
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.leds = [
+      [Blockly.LANG_ARDUINO_PURPLE, 'PURPLE'],
+      [Blockly.LANG_ARDUINO_GREEN, 'GREEN'],
+      [Blockly.LANG_ARDUINO_BLUE, 'BLUE'],
+      [Blockly.LANG_ARDUINO_RED, 'RED']
+    ];
+    var menu = new Blockly.FieldDropdown(this.leds);
+    this.appendInput([menu, 'LED'], Blockly.INPUT_VALUE, 'TEXT', String);
+    this.appendTitle(" LED");
+    this.setOutput(true, Number);
+    this.setTooltip("Select LED");
+  }
+};
+Blockly.Language.multimeter = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Multimeter");
+    this.setOutput(true, Number);
+    this.setTooltip("Multimeter");
+  }
+};
+Blockly.Language.servopin = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("My Servo");
+    this.setOutput(true, Number);
+    this.setTooltip("My Servo");
+  }
+};
+Blockly.Language.lightsensor = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Light Sensor");
+    this.setOutput(true, Number);
+    this.setTooltip("Light Sensor");
+  }
+};
+Blockly.Language.audioplug = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Audio Plug");
+    this.setOutput(true, Number);
+    this.setTooltip("Audio Plug");
+  }
+};
+
 /*
 // piezo init and tone
 Blockly.Language.piezo_init = {

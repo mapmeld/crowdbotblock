@@ -381,3 +381,9 @@ Blockly.LANG_PROCEDURES_MUTATORCONTAINER_TITLE = 'parameters';
 Blockly.LANG_PROCEDURES_MUTATORARG_TITLE = 'variable:';
 
 Blockly.LANG_PROCEDURES_HIGHLIGHT_DEF = 'Highlight Procedure';
+
+// Arduino additional messages
+Blockly.LANG_ARDUINO_PURPLE = "purple";
+Blockly.LANG_ARDUINO_GREEN = "green";
+Blockly.LANG_ARDUINO_BLUE = "blue";
+Blockly.LANG_ARDUINO_RED = "red";

@@ -2653,7 +2653,10 @@ Blockly.LANG_PROCEDURES_MUTATORARG_TITLE = 'variable:';
 
 Blockly.LANG_PROCEDURES_HIGHLIGHT_DEF = 'Highlight Procedure';
 
-
+Blockly.LANG_ARDUINO_PURPLE = "purple";
+Blockly.LANG_ARDUINO_GREEN = "green";
+Blockly.LANG_ARDUINO_BLUE = "blue";
+Blockly.LANG_ARDUINO_RED = "red";
 
 /**
  * @fileoverview Generating JavaScript for variable blocks.
@@ -3676,6 +3679,66 @@ Blockly.Language.sensorval = {
     this.setTooltip("Read Sensor");
   }
 };
+// wiring objects
+Blockly.Language.selectled = function(){
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.leds = [
+      [Blockly.LANG_ARDUINO_PURPLE, 'PURPLE'],
+      [Blockly.LANG_ARDUINO_GREEN, 'GREEN'],
+      [Blockly.LANG_ARDUINO_BLUE, 'BLUE'],
+      [Blockly.LANG_ARDUINO_RED, 'RED']
+    ];
+    var menu = new Blockly.FieldDropdown(this.leds);
+    this.appendInput([menu, 'LED'], Blockly.INPUT_VALUE, 'TEXT', String);
+    this.appendTitle(" LED");
+    this.setOutput(true, Number);
+    this.setTooltip("Select LED");
+  }
+};
+Blockly.Language.multimeter = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Multimeter");
+    this.setOutput(true, Number);
+    this.setTooltip("Multimeter");
+  }
+};
+Blockly.Language.servopin = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("My Servo");
+    this.setOutput(true, Number);
+    this.setTooltip("My Servo");
+  }
+};
+Blockly.Language.lightsensor = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Light Sensor");
+    this.setOutput(true, Number);
+    this.setTooltip("Light Sensor");
+  }
+};
+Blockly.Language.audioplug = {
+  category: "Arduino",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Audio Plug");
+    this.setOutput(true, Number);
+    this.setTooltip("Audio Plug");
+  }
+};
+
 // Servo init, min, max, center, move, sweep
 Blockly.Language.servo_init = {
   category: "Motor",
@@ -4040,6 +4103,38 @@ Blockly.JavaScript.sensorval = function(){
   var pin = Blockly.JavaScript.valueToCode(this, 'PIN', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   pin *= 1;
   return ['(sensor' + pin + '_val)', Blockly.JavaScript.ORDER_MEMBER];
+};
+// Robot wiring config
+Blockly.JavaScript.selectled = function(){
+  var myled = Blockly.JavaScript.valueToCode(this, 'LED', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  var ledpin = 0;
+  switch(myled){
+    case "PURPLE":
+      ledpin = 2;
+      break;
+    case "GREEN":
+      ledpin = 4;
+      break;
+    case "BLUE":
+      ledpin = 6;
+      break;
+    case "RED":
+      ledpin = 10;
+      break;
+  }
+  return [ledpin, Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.multimeter = function(){
+  return ['8', Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.servopin = function(){
+  return ['9', Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.lightsensor = function(){
+  return ['0', Blockly.JavaScript.ORDER_MEMBER];
+};
+Blockly.JavaScript.audioplug = function(){
+  return ['4', Blockly.JavaScript.ORDER_MEMBER];
 };
 
 Blockly.JavaScript.text_prompt = function() {
