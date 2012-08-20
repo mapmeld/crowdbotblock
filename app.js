@@ -67,6 +67,13 @@ var init = exports.init = function (config) {
     blockcode.blockcode.findOne({ status: 'downloaded' }).sort('-updated').exec(function(err, doc){
       res.render('livestream', { program: { id: doc._id, name: doc.name, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
     });
+    if(req.query['id']){
+      blockcode.blockcode.findOne({ _id: req.query['id'] }).sort('-updated').exec(function(err, doc){
+        doc.status = 'cue';
+        doc.updated = new Date();
+        doc.save(function(err){ });
+      });
+    }
   });
   /*io.sockets.on('connection', function(socket){
     socket.emit('code', { hello: 'world' });
