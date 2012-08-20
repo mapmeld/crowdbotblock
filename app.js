@@ -131,8 +131,8 @@ var init = exports.init = function (config) {
   app.get('/cue', function(req, res){
     blockcode.blockcode.findOne({ status: 'cue' }).sort('updated').exec(function(err, doc){
       // if code is unchanged, send only the lastid
-      if(!doc || doc._id == req.query['lastid']){
-        res.send({ _id: req.query['lastid'] });
+      if(!doc){
+        res.send({ _id: "none" });
         return;
       }
 

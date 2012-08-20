@@ -41,9 +41,15 @@ setTimeout(function(){
 
 # while loops < 175: # 175 loops x 45 seconds > 2 hours running time
 while loops < 175:
-    program = json.loads(urllib.urlopen(appinstance + '/cue?lastid=' + lastid).read())
+    program = ""
+    if(lastid == ""):
+        # first time through, rerun last program (allows restarts)
+        program = json.loads(urllib.urlopen(appinstance + '/latest').read())        
+    else:
+        # after the first time, pick a program from the cue
+        program = json.loads(urllib.urlopen(appinstance + '/cue?lastid=' + lastid).read())
     
-    if(program["_id"] != lastid):
+    if(program["_id"] != "none"):
         print program["js"]
         lastid = program["_id"]
 
@@ -78,6 +84,7 @@ while loops < 175:
         response = os.system('node submitted-crowdbotblock.js')
         # response could feasibly be checked for compilation / upload errors
         print response
+        time.sleep(5)
     else:
         # wait 45 seconds and look for a new pending program
         print "no new program"
