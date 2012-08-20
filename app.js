@@ -144,6 +144,8 @@ var init = exports.init = function (config) {
       }
 
       // generate code from XML
+      try{
+
       var Blockly = require("./blocklyserver/blockly_full.js");
       var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
       Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
@@ -153,6 +155,15 @@ var init = exports.init = function (config) {
       // send new code to streamers
       if(io && io.sockets){
         io.sockets.emit('newprogram', { js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;"), name: doc.name, id: doc._id });
+      }
+
+      }
+      catch(e){
+      doc.status = 'downloaded';
+      doc.updated = new Date();
+      doc.save(function(err){ });
+        res.send({ _id: "none" });
+        return;
       }
 
       // update doc status
