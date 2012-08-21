@@ -301,8 +301,8 @@ Blockly.Language.text_strobe = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Strobe");
-    this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Blink");
+    this.appendInput('LED / pin', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Strobe");
@@ -313,11 +313,11 @@ Blockly.Language.text_on = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("On");
-    this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Turn On");
+    this.appendInput('LED / pin', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("On");
+    this.setTooltip("Turn On");
   }
 };
 Blockly.Language.text_off = {
@@ -325,11 +325,11 @@ Blockly.Language.text_off = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Off");
-    this.appendInput('LED@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Turn Off");
+    this.appendInput('LED / pin', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("Off");
+    this.setTooltip("Turn off");
   }
 };
 
@@ -368,11 +368,11 @@ Blockly.Language.servo_init = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Init");
-    this.appendInput('Servo@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Set up Servo Motor");
+    this.appendInput('at', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("Init Servo");
+    this.setTooltip("Set up Servo Motor");
   }
 };
 Blockly.Language.servo_move = {
@@ -380,8 +380,8 @@ Blockly.Language.servo_move = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Move");
-    this.appendInput('Servo@', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Move Servo Motor");
+    this.appendInput('at pin', Blockly.INPUT_VALUE, 'NUM', Number);
     this.appendInput('to', Blockly.INPUT_VALUE, 'NUM2', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -393,9 +393,9 @@ Blockly.Language.servopin = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("My Servo");
+    this.appendTitle("My Motor");
     this.setOutput(true, Number);
-    this.setTooltip("My Servo");
+    this.setTooltip("My Motor");
   }
 };
 // wait function
@@ -419,9 +419,9 @@ Blockly.Language.button = {
   init: function() {
     this.setColour(80);
     this.appendTitle("Button");
-    this.appendInput('@', Blockly.INPUT_VALUE, 'PIN', Number);
-    this.appendInput('Hit:', Blockly.NEXT_STATEMENT, 'HIT');
-    this.appendInput('Release:', Blockly.NEXT_STATEMENT, 'RELEASE');
+    this.appendInput('pin', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendInput('When hit:', Blockly.NEXT_STATEMENT, 'HIT');
+    this.appendInput('When released:', Blockly.NEXT_STATEMENT, 'RELEASE');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Button");
@@ -434,11 +434,11 @@ Blockly.Language.sensorinit = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Init");
-    this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendTitle("Set up Sensor");
+    this.appendInput('pin', Blockly.INPUT_VALUE, 'PIN', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("Init Sensor");
+    this.setTooltip("Set up Sensor");
   }
 };
 Blockly.Language.sensorval = {
@@ -446,8 +446,8 @@ Blockly.Language.sensorval = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Read");
-    this.appendInput('Sensor@', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendTitle("Read Sensor");
+    this.appendInput('pin', Blockly.INPUT_VALUE, 'PIN', Number);
     this.setOutput(true, Number);
     this.setTooltip("Read Sensor");
   }
