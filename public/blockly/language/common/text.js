@@ -302,7 +302,7 @@ Blockly.Language.text_strobe = {
   init: function(){
     this.setColour(250);
     this.appendTitle("Blink");
-    this.appendInput('LED / pin', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendInput('LED', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Strobe");
@@ -313,8 +313,8 @@ Blockly.Language.text_on = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Turn On");
-    this.appendInput('LED / pin', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Turn on LED");
+    this.appendInput('at', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Turn On");
@@ -325,8 +325,8 @@ Blockly.Language.text_off = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Turn Off");
-    this.appendInput('LED / pin', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Turn off LED");
+    this.appendInput('at', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Turn off");
@@ -380,8 +380,8 @@ Blockly.Language.servo_move = {
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
     this.setColour(250);
-    this.appendTitle("Move Servo Motor");
-    this.appendInput('at pin', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.appendTitle("Turn Servo Motor");
+    this.appendInput('at', Blockly.INPUT_VALUE, 'NUM', Number);
     this.appendInput('to', Blockly.INPUT_VALUE, 'NUM2', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -419,7 +419,7 @@ Blockly.Language.button = {
   init: function() {
     this.setColour(80);
     this.appendTitle("Button");
-    this.appendInput('pin', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendInput('at', Blockly.INPUT_VALUE, 'PIN', Number);
     this.appendInput('When hit:', Blockly.NEXT_STATEMENT, 'HIT');
     this.appendInput('When released:', Blockly.NEXT_STATEMENT, 'RELEASE');
     this.setPreviousStatement(true);
@@ -435,7 +435,7 @@ Blockly.Language.sensorinit = {
   init: function(){
     this.setColour(250);
     this.appendTitle("Set up Sensor");
-    this.appendInput('pin', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendInput('at', Blockly.INPUT_VALUE, 'PIN', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip("Set up Sensor");
@@ -447,7 +447,7 @@ Blockly.Language.sensorval = {
   init: function(){
     this.setColour(250);
     this.appendTitle("Read Sensor");
-    this.appendInput('pin', Blockly.INPUT_VALUE, 'PIN', Number);
+    this.appendInput('at', Blockly.INPUT_VALUE, 'PIN', Number);
     this.setOutput(true, Number);
     this.setTooltip("Read Sensor");
   }
