@@ -14,6 +14,8 @@ That code is then transferred to JavaScript which can be run by a node server us
 
 Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web. Socket.io makes it possible to see the code and data stream in real time.
 
+<img src="http://i.imgur.com/AvnDI.jpg"/>
+
 <img src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg"/>
 
 ## Roadmap
