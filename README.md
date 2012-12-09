@@ -6,17 +6,19 @@ Suppose you put some blocks together like this:
 
 <img src="http://i.imgur.com/wDxAi.png"/>
 
-That code is then transferred to JavaScript which can be run by a node server using the johnny-five module:
+The blocks are then available in Wiring (the standard language for Arduino, based on C) and in JavaScript (which runs on a node.js server with the johnny-five module).
 
-<img src="http://i.imgur.com/0SXPJ.png"/>
+There is also an option to write Wiring programs in text:
+
+<img src="http://i.imgur.com/CXLu5.png"/>
 
 ## Click 'Send' and Watch Live
 
-Coming soon: a livestreamed <strong>CrowdBot</strong> which you can watch and reprogram over the web. Socket.io makes it possible to see the code and data stream in real time.
+In development: a mobile <strong>CrowdBot</strong> which you can watch and reprogram over the web. Socket.io makes it possible to see the code and data stream in real time.
 
 <img src="http://i.imgur.com/AvnDI.jpg"/>
 
-<img src="http://p.twimg.com/AgwrF22CMAA5HoQ.jpg"/>
+<img src="http://i.imgur.com/5rUXc.jpg"/>
 
 ## Roadmap
 CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C. The roadmap to making similar and then brand new features:

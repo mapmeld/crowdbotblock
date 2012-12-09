@@ -4662,7 +4662,7 @@ Blockly.Wiring.finish = function(code) {
   for (var name in Blockly.Wiring.definitions_) {
     definitions.push(Blockly.Wiring.definitions_[name]);
   }
-  return "void init(){\n" + definitions.join('\n') + '}\n\nvoid loop(){\n' + code + "\n}";
+  return "void setup(){\n" + definitions.join('\n') + '}\n\nvoid loop(){\n' + code + "\n}";
 };
 
 /**
