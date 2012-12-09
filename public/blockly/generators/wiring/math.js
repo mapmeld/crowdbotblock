@@ -88,37 +88,37 @@ Blockly.Wiring.math_single = function() {
   // wrapping the code.
   switch (operator) {
     case 'ABS':
-      code = 'Math.abs(' + argNaked + ')';
+      code = 'abs(' + argNaked + ')';
       break;
     case 'ROOT':
-      code = 'Math.sqrt(' + argNaked + ')';
+      code = 'sqrt(' + argNaked + ')';
       break;
     case 'LN':
-      code = 'Math.log(' + argNaked + ')';
+      code = 'log(' + argNaked + ')';
       break;
     case 'EXP':
-      code = 'Math.exp(' + argNaked + ')';
+      code = 'exp(' + argNaked + ')';
       break;
     case '10POW':
-      code = 'Math.pow(10,' + argNaked + ')';
+      code = 'pow(10,' + argNaked + ')';
       break;
     case 'ROUND':
-      code = 'Math.round(' + argNaked + ')';
+      code = 'round(' + argNaked + ')';
       break;
     case 'ROUNDUP':
-      code = 'Math.ceil(' + argNaked + ')';
+      code = 'ceil(' + argNaked + ')';
       break;
     case 'ROUNDDOWN':
-      code = 'Math.floor(' + argNaked + ')';
+      code = 'floor(' + argNaked + ')';
       break;
     case 'SIN':
-      code = 'Math.sin(' + argParen + ' / 180 * Math.PI)';
+      code = 'sin(' + argParen + ' / 180 * PI)';
       break;
     case 'COS':
-      code = 'Math.cos(' + argParen + ' / 180 * Math.PI)';
+      code = 'cos(' + argParen + ' / 180 * PI)';
       break;
     case 'TAN':
-      code = 'Math.tan(' + argParen + ' / 180 * Math.PI)';
+      code = 'tan(' + argParen + ' / 180 * PI)';
       break;
   }
   if (code) {
@@ -128,16 +128,16 @@ Blockly.Wiring.math_single = function() {
   // wrapping the code.
   switch (operator) {
     case 'LOG10':
-      code = 'Math.log(' + argNaked + ') / Math.log(10)';
+      code = 'log10(' + argNaked + ')';
       break;
     case 'ASIN':
-      code = 'Math.asin(' + argNaked + ') / Math.PI * 180';
+      code = 'asin(' + argNaked + ') / PI * 180';
       break;
     case 'ACOS':
-      code = 'Math.acos(' + argNaked + ') / Math.PI * 180';
+      code = 'acos(' + argNaked + ') / PI * 180';
       break;
     case 'ATAN':
-      code = 'Math.atan(' + argNaked + ') / Math.PI * 180';
+      code = 'atan(' + argNaked + ') / PI * 180';
       break;
     default:
       throw 'Unknown math operator.';
@@ -157,18 +157,18 @@ Blockly.Wiring.math_on_list = function() {
   switch (func) {
     case 'SUM':
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_MEMBER) || '[]';
-      code = list + '.reduce(function(x, y) {return x + y;})';
+          Blockly.Wiring.ORDER_MEMBER) || '{ }';
+      code = '(int(){ int sortlist[] = ' list + ';\n      int sum = 0;\n      for(int i=0;i<sortlist.length;i++){\n        sum += sortlist[i];\n      }\n      return sum;\n})()\n';
       break;
     case 'MIN':
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_COMMA) || '[]';
-      code = 'Math.min.apply(null, ' + list + ')';
+          Blockly.Wiring.ORDER_COMMA) || '{ }';
+      code = '(int(){ int sortlist[] = ' list + ';\n      int mymin = sortlist[0];\n      for(int i=1;i<sortlist.length;i++){\n        mymin = min(mymin, sortlist[i]);\n      }\n      return mymin;\n})()\n';
       break;
     case 'MAX':
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_COMMA) || '[]';
-      code = 'Math.max.apply(null, ' + list + ')';
+          Blockly.Wiring.ORDER_COMMA) || '{ }';
+      code = '(int(){ int sortlist[] = ' list + ';\n      int mymax = sortlist[0];\n      for(int i=1;i<sortlist.length;i++){\n        mymax = max(mymax, sortlist[i]);\n      }\n      return mymax;\n})()\n';
       break;
     case 'AVERAGE':
       // math_median([null,null,1,3]) == 2.0.
@@ -178,13 +178,13 @@ Blockly.Wiring.math_on_list = function() {
         Blockly.Wiring.math_on_list.math_mean = functionName;
         var func = [];
         func.push('int ' + functionName + '(myList) {');
-        func.push('  return myList.reduce(function(x, y) {return x + y;}) / ' +
+        func.push('  return myList.reduce(float(x, y) {return x + y;}) / ' +
                   'myList.length;');
         func.push('}');
         Blockly.Wiring.definitions_['math_mean'] = func.join('\n');
       }
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_NONE) || '[]';
+          Blockly.Wiring.ORDER_NONE) || '{ }';
       code = Blockly.Wiring.math_on_list.math_mean + '(' + list + ')';
       break;
     case 'MEDIAN':
@@ -194,11 +194,11 @@ Blockly.Wiring.math_on_list = function() {
             'math_median', Blockly.Generator.NAME_TYPE);
         Blockly.Wiring.math_on_list.math_median = functionName;
         var func = [];
-        func.push('function ' + functionName + '(myList) {');
-        func.push('  var localList = myList.filter(function (x) ' +
+        func.push('int ' + functionName + '(myList) {');
+        func.push('  int localList[] = myList.filter(int (x) ' +
                   '{return typeof x == \'number\';});');
         func.push('  if (!localList.length) return null;');
-        func.push('  localList.sort(function(a, b) {return b - a;});');
+        func.push('  localList.sort(int(a, b) {return b - a;});');
         func.push('  if (localList.length % 2 == 0) {');
         func.push('    return (localList[localList.length / 2 - 1] + ' +
                   'localList[localList.length / 2]) / 2;');
@@ -209,7 +209,7 @@ Blockly.Wiring.math_on_list = function() {
         Blockly.Wiring.definitions_['math_median'] = func.join('\n');
       }
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_NONE) || '[]';
+          Blockly.Wiring.ORDER_NONE) || '{ }';
       code = Blockly.Wiring.math_on_list.math_median + '(' + list + ')';
       break;
     case 'MODE':
@@ -221,15 +221,15 @@ Blockly.Wiring.math_on_list = function() {
         // the returned result is provided as an array.
         // Mode of [3, 'x', 'x', 1, 1, 2, '3'] -> ['x', 1].
         var func = [];
-        func.push('function ' + functionName + '(values) {');
-        func.push('  var modes = [];');
-        func.push('  var counts = [];');
-        func.push('  var maxCount = 0;');
-        func.push('  for (var i = 0; i < values.length; i++) {');
-        func.push('    var value = values[i];');
-        func.push('    var found = false;');
-        func.push('    var thisCount;');
-        func.push('    for (var j = 0; j < counts.length; j++) {');
+        func.push('float ' + functionName + '(values) {');
+        func.push('  int modes = { };');
+        func.push('  int counts = { };');
+        func.push('  int maxCount = 0;');
+        func.push('  for (int i = 0; i < values.length; i++) {');
+        func.push('    int value = values[i];');
+        func.push('    boolean found = false;');
+        func.push('    int thisCount;');
+        func.push('    for (int j = 0; j < counts.length; j++) {');
         func.push('      if (counts[j][0] === value) {');
         func.push('        thisCount = ++counts[j][1];');
         func.push('        found = true;');
@@ -240,9 +240,9 @@ Blockly.Wiring.math_on_list = function() {
         func.push('      counts.push([value, 1]);');
         func.push('      thisCount = 1;');
         func.push('    }');
-        func.push('    maxCount = Math.max(thisCount, maxCount);');
+        func.push('    maxCount = max(thisCount, maxCount);');
         func.push('  }');
-        func.push('  for (var j = 0; j < counts.length; j++) {');
+        func.push('  for (int j = 0; j < counts.length; j++) {');
         func.push('    if (counts[j][1] == maxCount) {');
         func.push('        modes.push(counts[j][0]);');
         func.push('    }');
@@ -252,7 +252,7 @@ Blockly.Wiring.math_on_list = function() {
         Blockly.Wiring.definitions_['math_modes'] = func.join('\n');
       }
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_NONE) || '[]';
+          Blockly.Wiring.ORDER_NONE) || '{ }';
       code = Blockly.Wiring.math_on_list.math_modes + '(' + list + ')';
       break;
     case 'STD_DEV':
@@ -261,24 +261,24 @@ Blockly.Wiring.math_on_list = function() {
             'math_standard_deviation', Blockly.Generator.NAME_TYPE);
         Blockly.Wiring.math_on_list.math_standard_deviation = functionName;
         var func = [];
-        func.push('function ' + functionName + '(numbers) {');
-        func.push('  var n = numbers.length;');
+        func.push('float ' + functionName + '(numbers) {');
+        func.push('  int n = numbers.length;');
         func.push('  if (!n) return null;');
-        func.push('  var mean = numbers.reduce(function(x, y) ' +
+        func.push('  float mean = numbers.reduce(function(x, y) ' +
                   '{return x + y;}) / n;');
-        func.push('  var variance = 0;');
-        func.push('  for (var j = 0; j < n; j++) {');
-        func.push('    variance += Math.pow(numbers[j] - mean, 2);');
+        func.push('  float variance = 0;');
+        func.push('  for (int j = 0; j < n; j++) {');
+        func.push('    variance += pow(numbers[j] - mean, 2);');
         func.push('  }');
         func.push('  variance = variance / n;');
-        func.push('  standard_dev = Math.sqrt(variance);');
+        func.push('  standard_dev = sqrt(variance);');
         func.push('  return standard_dev;');
         func.push('}');
         Blockly.Wiring.definitions_['math_standard_deviation'] =
             func.join('\n');
       }
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_NONE) || '[]';
+          Blockly.Wiring.ORDER_NONE) || '{ }';
       code = Blockly.Wiring.math_on_list.math_standard_deviation +
           '(' + list + ')';
       break;
@@ -288,14 +288,14 @@ Blockly.Wiring.math_on_list = function() {
             'math_random_item', Blockly.Generator.NAME_TYPE);
         Blockly.Wiring.math_on_list.math_random_item = functionName;
         var func = [];
-        func.push('function ' + functionName + '(list) {');
-        func.push('  var x = Math.floor(Math.random() * list.length);');
+        func.push('int ' + functionName + '(list) {');
+        func.push('  int x = floor(random(0, list.length));');
         func.push('  return list[x];');
         func.push('}');
         Blockly.Wiring.definitions_['math_random_item'] = func.join('\n');
       }
       list = Blockly.Wiring.valueToCode(this, 'LIST',
-          Blockly.Wiring.ORDER_NONE) || '[]';
+          Blockly.Wiring.ORDER_NONE) || '{ }';
       code = Blockly.Wiring.math_on_list.math_random_item +
           '(' + list + ')';
       break;
@@ -313,7 +313,7 @@ Blockly.Wiring.math_constrain = function() {
       Blockly.Wiring.ORDER_COMMA) || '0';
   var argument2 = Blockly.Wiring.valueToCode(this, 'HIGH',
       Blockly.Wiring.ORDER_COMMA) || '0';
-  var code = 'Math.min(Math.max(' + argument0 + ', ' + argument1 + '), ' +
+  var code = 'min(max(' + argument0 + ', ' + argument1 + '), ' +
       argument2 + ')';
   return [code, Blockly.Wiring.ORDER_FUNCTION_CALL];
 };
@@ -339,14 +339,14 @@ Blockly.Wiring.math_random_int = function() {
         'math_random_int', Blockly.Generator.NAME_TYPE);
     Blockly.Wiring.math_random_int.random_function = functionName;
     var func = [];
-    func.push('function ' + functionName + '(a, b) {');
+    func.push('int ' + functionName + '(a, b) {');
     func.push('  if (a > b) {');
     func.push('    // Swap a and b to ensure a is smaller.');
-    func.push('    var c = a;');
+    func.push('    int c = a;');
     func.push('    a = b;');
     func.push('    b = c;');
     func.push('  }');
-    func.push('  return Math.floor(Math.random() * (b - a + 1) + a);');
+    func.push('  return floor(random(0, (b - a + 1) + a));');
     func.push('}');
     Blockly.Wiring.definitions_['math_random_int'] = func.join('\n');
   }
@@ -357,5 +357,5 @@ Blockly.Wiring.math_random_int = function() {
 
 Blockly.Wiring.math_random_float = function() {
   // Random fraction between 0 and 1.
-  return ['Math.random()', Blockly.Wiring.ORDER_FUNCTION_CALL];
+  return ['random(0,1)', Blockly.Wiring.ORDER_FUNCTION_CALL];
 };
