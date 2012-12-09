@@ -305,7 +305,7 @@ Blockly.Language.text_strobe = {
     this.appendInput('LED', Blockly.INPUT_VALUE, 'NUM', Number);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("Strobe");
+    this.setTooltip("Blink");
   }
 };
 Blockly.Language.text_on = {
@@ -351,7 +351,7 @@ Blockly.Language.selectled = {
     this.setTooltip("Select LED");
   }
 };
-Blockly.Language.multimeter = {
+/*Blockly.Language.multimeter = {
   category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
@@ -360,10 +360,10 @@ Blockly.Language.multimeter = {
     this.setOutput(true, Number);
     this.setTooltip("Multimeter");
   }
-};
+};*/
 
 // Servo init, min, max, center, move, sweep
-Blockly.Language.servo_init = {
+/*Blockly.Language.servo_init = {
   category: "Motor",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
@@ -397,7 +397,7 @@ Blockly.Language.servopin = {
     this.setOutput(true, Number);
     this.setTooltip("My Motor");
   }
-};
+};*/
 // wait function
 Blockly.Language.wait = {
   category: "Arduino",
@@ -413,7 +413,7 @@ Blockly.Language.wait = {
   }
 };
 // button / bumper init and callback
-Blockly.Language.button = {
+/*Blockly.Language.button = {
   category: "Arduino",
   helpUrl: Blockly.LANG_CONTROLS_WHILEUNTIL_HELPURL,
   init: function() {
@@ -426,7 +426,7 @@ Blockly.Language.button = {
     this.setNextStatement(true);
     this.setTooltip("Button");
   }
-};
+};*/
 
 // sensor init and val return
 Blockly.Language.sensorinit = {
@@ -464,7 +464,7 @@ Blockly.Language.lightsensor = {
     this.setTooltip("Light Sensor");
   }
 };
-Blockly.Language.audioplug = {
+/*Blockly.Language.audioplug = {
   category: "Arduino",
   helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
   init: function(){
@@ -473,7 +473,7 @@ Blockly.Language.audioplug = {
     this.setOutput(true, Number);
     this.setTooltip("Audio Plug");
   }
-};
+};*/
 
 /*
 // piezo init and tone

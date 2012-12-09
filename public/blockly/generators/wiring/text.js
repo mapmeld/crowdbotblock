@@ -228,7 +228,7 @@ Blockly.Wiring.button = function() {
   var branch0 = Blockly.Wiring.statementToCode(this, 'HIT');
   var branch1 = Blockly.Wiring.statementToCode(this, 'RELEASE');
   argument0 *= 1;
-  return 'setMode(' + argument0 + ', INPUT);\nif(diitalRead(' + argument0 + ')){\n' + branch0 + '}\n';
+  return 'setMode(' + argument0 + ', INPUT);\nif(digitalRead(' + argument0 + ') == HIGH){\n' + branch0 + '\n }\n ';
 };
 // Sensor read
 Blockly.Wiring.sensorinit = function(){
