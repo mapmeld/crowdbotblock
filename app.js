@@ -129,8 +129,16 @@ var init = exports.init = function (config) {
       var xml = Blockly.Blockly.Xml.textToDom(doc.xml);
       Blockly.Blockly.mainWorkspace = new Blockly.Blockly.Workspace(true);
       Blockly.Blockly.Xml.domToWorkspace(Blockly.Blockly.mainWorkspace, xml);
-      var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
-      res.send({ _id: doc._id, js: code, name: doc.name });
+      if(req.query['language'] && req.query['language'] == 'wiring'){
+        // print Wiring
+        var code = Blockly.Blockly.Generator.workspaceToCode('Wiring');
+        res.send({ _id: doc._id, wiring: code, name: doc.name });
+      }
+      else{
+        // print JS
+        var code = Blockly.Blockly.Generator.workspaceToCode('JavaScript');
+        res.send({ _id: doc._id, js: code, name: doc.name });
+      }
     });
   });
 
