@@ -39,7 +39,7 @@ Blockly.Wiring.procedures_defreturn = function() {
     args[x] = Blockly.Wiring.variableDB_.getName(this.arguments_[x],
         Blockly.Variables.NAME_TYPE);
   }
-  var code = 'String function ' + funcName + '(' + args.join(', ') + ') {\n' +
+  var code = 'String ' + funcName + '(' + args.join(', ') + ') {\n' +
       branch + returnValue + '}\n';
   code = Blockly.Wiring.scrub_(this, code);
   Blockly.Wiring.definitions_[funcName] = code;

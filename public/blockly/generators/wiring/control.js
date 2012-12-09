@@ -91,7 +91,7 @@ Blockly.Wiring.controls_forEach = function() {
   var variable0 = Blockly.Wiring.variableDB_.getName(
       this.getInputVariable('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.Wiring.valueToCode(this, 'LIST',
-      Blockly.Wiring.ORDER_ASSIGNMENT) || '[]';
+      Blockly.Wiring.ORDER_ASSIGNMENT) || '{ }';
   var branch0 = Blockly.Wiring.statementToCode(this, 'DO');
   var code;
   var indexVar = Blockly.Wiring.variableDB_.getDistinctName(

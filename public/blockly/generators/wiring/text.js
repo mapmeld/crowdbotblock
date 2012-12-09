@@ -121,7 +121,7 @@ Blockly.Wiring.text_charAt = function() {
   var argument0 = Blockly.Wiring.valueToCode(this, 'AT',
       Blockly.Wiring.ORDER_NONE) || '1';
   var argument1 = Blockly.Wiring.valueToCode(this, 'VALUE',
-      Blockly.Wiring.ORDER_MEMBER) || '[]';
+      Blockly.Wiring.ORDER_MEMBER) || '{ }';
   // Blockly uses one-based indicies.
   if (argument0.match(/^\d+$/)) {
     // If the index is a naked number, decrement it right now.
@@ -153,7 +153,7 @@ Blockly.Wiring.text_changeCase = function() {
       var func = [];
       func.push('String ' + functionName + '(str) {');
       func.push('  return str.replace(/\\S+/g,');
-      func.push('      function(txt) {return txt.charAt(0).toUpperCase() + ' +
+      func.push('      String (txt) {return txt[0].toUpperCase() + ' +
                 'txt.substr(1).toLowerCase();});');
       func.push('}');
       Blockly.Wiring.definitions_['text_toTitleCase'] = func.join('\n');

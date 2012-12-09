@@ -158,17 +158,17 @@ Blockly.Wiring.math_on_list = function() {
     case 'SUM':
       list = Blockly.Wiring.valueToCode(this, 'LIST',
           Blockly.Wiring.ORDER_MEMBER) || '{ }';
-      code = '(int(){ int sortlist[] = ' list + ';\n      int sum = 0;\n      for(int i=0;i<sortlist.length;i++){\n        sum += sortlist[i];\n      }\n      return sum;\n})()\n';
+      code = '(int(){ int sortlist[] = ' + list + ';\n      int sum = 0;\n      for(int i=0;i<sortlist.length;i++){\n        sum += sortlist[i];\n      }\n      return sum;\n})()\n';
       break;
     case 'MIN':
       list = Blockly.Wiring.valueToCode(this, 'LIST',
           Blockly.Wiring.ORDER_COMMA) || '{ }';
-      code = '(int(){ int sortlist[] = ' list + ';\n      int mymin = sortlist[0];\n      for(int i=1;i<sortlist.length;i++){\n        mymin = min(mymin, sortlist[i]);\n      }\n      return mymin;\n})()\n';
+      code = '(int(){ int sortlist[] = ' + list + ';\n      int mymin = sortlist[0];\n      for(int i=1;i<sortlist.length;i++){\n        mymin = min(mymin, sortlist[i]);\n      }\n      return mymin;\n})()\n';
       break;
     case 'MAX':
       list = Blockly.Wiring.valueToCode(this, 'LIST',
           Blockly.Wiring.ORDER_COMMA) || '{ }';
-      code = '(int(){ int sortlist[] = ' list + ';\n      int mymax = sortlist[0];\n      for(int i=1;i<sortlist.length;i++){\n        mymax = max(mymax, sortlist[i]);\n      }\n      return mymax;\n})()\n';
+      code = '(int(){ int sortlist[] = ' + list + ';\n      int mymax = sortlist[0];\n      for(int i=1;i<sortlist.length;i++){\n        mymax = max(mymax, sortlist[i]);\n      }\n      return mymax;\n})()\n';
       break;
     case 'AVERAGE':
       // math_median([null,null,1,3]) == 2.0.
