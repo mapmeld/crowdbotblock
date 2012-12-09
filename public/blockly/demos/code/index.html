@@ -10,7 +10,7 @@
  * List of tab names.
  * @private
  */
-var TABS_ = ['blocks', 'javascript', 'dart', 'python', 'xml'];
+var TABS_ = ['blocks', 'javascript', 'dart', 'python', 'wiring', 'xml'];
 
 var selected = 'blocks';
 
@@ -77,7 +77,10 @@ function renderContent() {
     content.innerHTML = Blockly.Generator.workspaceToCode('Dart');
   } else if (content.id == 'content_python') {
     content.innerHTML = Blockly.Generator.workspaceToCode('Python');
+  } else if (content.id == 'content_wiring') {
+    content.innerHTML = Blockly.Generator.workspaceToCode('Wiring');
   }
+  
 }
 
 /**
@@ -394,6 +397,8 @@ function discard() {
             <td id="tab_python" class="taboff" onclick="tabClick(this.id)">Python</td>
             <td class="tabmin">&nbsp;</td>
             <td id="tab_xml" class="taboff" onclick="tabClick(this.id)">XML</td>
+            <td class="tabmin">&nbsp;</td>
+            <td id="tab_wiring" class="taboff" onclick="tabClick(this.id)">Wiring</td>
             <td class="tabmax">
               <label>Program Name:</label>
               <input id="codename" type="text" value="" style="background-color:#7fff00;"/>
@@ -413,6 +418,7 @@ function discard() {
         <pre id="content_javascript"></pre>
         <pre id="content_dart"></pre>
         <pre id="content_python"></pre>
+        <pre id="content_wiring"></pre>
         <div id="content_xml">
           <textarea id="textarea_xml"></textarea>
         </div>
