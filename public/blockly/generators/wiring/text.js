@@ -197,7 +197,7 @@ Blockly.Wiring.text_print = function() {
 // attempt CrowdBotBlock code
 Blockly.Wiring.text_strobe = function(){
   var argument0 = Blockly.Wiring.valueToCode(this, 'NUM', Blockly.Wiring.ORDER_NONE) || '\'\'';
-  return 'digitalWrite(' + (argument0*1) + ', HIGH);\ndelay(300);\ndigitalWrite(' + (argument0*1) + ', LOW);\n';
+  return 'digitalWrite(' + (argument0*1) + ', HIGH);\ndelay(300);\ndigitalWrite(' + (argument0*1) + ', LOW);\ndelay(300);\n';
 };
 Blockly.Wiring.text_on = function(){
   var argument0 = Blockly.Wiring.valueToCode(this, 'NUM', Blockly.Wiring.ORDER_NONE) || '\'\'';
