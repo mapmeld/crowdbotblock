@@ -217,26 +217,26 @@ Blockly.Wiring.servo_move = function(){
   return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
 
-Blockly.Wiring.drive_init = {
+Blockly.Wiring.drive_init = function(){
   return 'var leftMotor = 3;\npinMode(leftMotor,OUTPUT);\nvar rightMotor = 11;\npinMode(rightMotor,OUTPUT);\nvar leftDir = 12;var rightDir = 13;\npinMode(leftDir,OUTPUT);\npinMode(rightDir,OUTPUT);\n';
 };
-Blockly.Wiring.drive_fwd = {
+Blockly.Wiring.drive_fwd = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'digitalWrite(leftDir,HIGH);\ndigitalWrite(rightDir,HIGH);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
 };
-Blockly.Wiring.drive_rev = {
+Blockly.Wiring.drive_rev = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'digitalWrite(leftDir,LOW);\ndigitalWrite(rightDir,LOW);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
 };
-Blockly.Wiring.drive_left = {
+Blockly.Wiring.drive_left = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'digitalWrite(leftDir,LOW);\ndigitalWrite(rightDir,HIGH);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
 };
-Blockly.Wiring.drive_right = {
+Blockly.Wiring.drive_right = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'digitalWrite(leftDir,HIGH);\ndigitalWrite(rightDir,LOW);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
 };
-Blockly.Wiring.drive_stop = {
+Blockly.Wiring.drive_stop = function(){
   return 'analogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
 };
 

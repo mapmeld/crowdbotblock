@@ -217,26 +217,26 @@ Blockly.JavaScript.servo_move = function(){
   return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
 
-Blockly.JavaScript.drive_init = {
+Blockly.JavaScript.drive_init = function(){
   return 'var leftMotor = new five.Motor({ pin: 3 });\nvar rightMotor = new five.Motor({ pin: 11 });\nboard.repl.inject({ motor: leftMotor });\nboard.repl.inject({ motor: rightMotor });\n var leftDir = new five.Led({ pin: 12 });\nvar rightDir = new five.Led({ pin: 13 });\n';
 };
-Blockly.JavaScript.drive_fwd = {
+Blockly.JavaScript.drive_fwd = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'leftDir.on();\nrightDir.on();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
 };
-Blockly.JavaScript.drive_rev = {
+Blockly.JavaScript.drive_rev = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'leftDir.off();\nrightDir.off();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
 };
-Blockly.JavaScript.drive_left = {
+Blockly.JavaScript.drive_left = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'leftDir.off();\nrightDir.on();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
 };
-Blockly.JavaScript.drive_right = {
+Blockly.JavaScript.drive_right = function(){
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'leftDir.on();\nrightDir.off();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
 };
-Blockly.JavaScript.drive_stop = {
+Blockly.JavaScript.drive_stop = function(){
   return 'leftMotor.stop();\n  rightMotor.stop();\n';
 };
 
