@@ -18,54 +18,54 @@
  */
 
 /**
- * @fileoverview Generating JavaScript for control blocks.
+ * @fileoverview Generating Wiring for control blocks.
  * @author fraser@google.com (Neil Fraser)
  */
 
-Blockly.JavaScript = Blockly.Generator.get('JavaScript');
+Blockly.Wiring = Blockly.Generator.get('Wiring');
 
-Blockly.JavaScript.controls_if = function() {
+Blockly.Wiring.controls_if = function() {
   // If/elseif/else condition.
   var n = 0;
-  var argument = Blockly.JavaScript.valueToCode(this, 'IF' + n,
-      Blockly.JavaScript.ORDER_NONE) || 'false';
-  var branch = Blockly.JavaScript.statementToCode(this, 'DO' + n);
+  var argument = Blockly.Wiring.valueToCode(this, 'IF' + n,
+      Blockly.Wiring.ORDER_NONE) || 'false';
+  var branch = Blockly.Wiring.statementToCode(this, 'DO' + n);
   var code = 'if (' + argument + ') {\n' + branch + '}';
   for (n = 1; n <= this.elseifCount_; n++) {
-    argument = Blockly.JavaScript.valueToCode(this, 'IF' + n,
-        Blockly.JavaScript.ORDER_NONE) || 'false';
-    branch = Blockly.JavaScript.statementToCode(this, 'DO' + n);
+    argument = Blockly.Wiring.valueToCode(this, 'IF' + n,
+        Blockly.Wiring.ORDER_NONE) || 'false';
+    branch = Blockly.Wiring.statementToCode(this, 'DO' + n);
     code += ' else if (' + argument + ') {\n' + branch + '}';
   }
   if (this.elseCount_) {
-    branch = Blockly.JavaScript.statementToCode(this, 'ELSE');
+    branch = Blockly.Wiring.statementToCode(this, 'ELSE');
     code += ' else {\n' + branch + '}';
   }
   return code + '\n';
 };
 
-Blockly.JavaScript.controls_whileUntil = function() {
+Blockly.Wiring.controls_whileUntil = function() {
   // Do while/until loop.
   var until = this.getTitleValue('MODE') == 'UNTIL';
-  var argument0 = Blockly.JavaScript.valueToCode(this, 'BOOL',
-      until ? Blockly.JavaScript.ORDER_LOGICAL_NOT :
-      Blockly.JavaScript.ORDER_NONE) || 'false';
-  var branch0 = Blockly.JavaScript.statementToCode(this, 'DO');
+  var argument0 = Blockly.Wiring.valueToCode(this, 'BOOL',
+      until ? Blockly.Wiring.ORDER_LOGICAL_NOT :
+      Blockly.Wiring.ORDER_NONE) || 'false';
+  var branch0 = Blockly.Wiring.statementToCode(this, 'DO');
   if (until) {
     argument0 = '!' + argument0;
   }
   return 'while (' + argument0 + ') {\n' + branch0 + '}\n';
 };
 
-Blockly.JavaScript.controls_for = function() {
+Blockly.Wiring.controls_for = function() {
   // For loop.
-  var variable0 = Blockly.JavaScript.variableDB_.getName(
+  var variable0 = Blockly.Wiring.variableDB_.getName(
       this.getInputVariable('VAR'), Blockly.Variables.NAME_TYPE);
-  var argument0 = Blockly.JavaScript.valueToCode(this, 'FROM',
-      Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-  var argument1 = Blockly.JavaScript.valueToCode(this, 'TO',
-      Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-  var branch0 = Blockly.JavaScript.statementToCode(this, 'DO');
+  var argument0 = Blockly.Wiring.valueToCode(this, 'FROM',
+      Blockly.Wiring.ORDER_ASSIGNMENT) || '0';
+  var argument1 = Blockly.Wiring.valueToCode(this, 'TO',
+      Blockly.Wiring.ORDER_ASSIGNMENT) || '0';
+  var branch0 = Blockly.Wiring.statementToCode(this, 'DO');
   var code;
   if (argument1.match(/^\w+$/)) {
     code = 'for (' + variable0 + ' = ' + argument0 + '; ' +
@@ -75,7 +75,7 @@ Blockly.JavaScript.controls_for = function() {
   } else {
     // The end value appears to be more complicated than a simple variable.
     // Cache it to a variable to prevent repeated look-ups.
-    var endVar = Blockly.JavaScript.variableDB_.getDistinctName(
+    var endVar = Blockly.Wiring.variableDB_.getDistinctName(
         variable0 + '_end', Blockly.Variables.NAME_TYPE);
     code = 'var ' + endVar + ' = ' + argument1 + ';\n' +
         'for (' + variable0 + ' = ' + argument0 + '; ' +
@@ -86,15 +86,15 @@ Blockly.JavaScript.controls_for = function() {
   return code;
 };
 
-Blockly.JavaScript.controls_forEach = function() {
+Blockly.Wiring.controls_forEach = function() {
   // For each loop.
-  var variable0 = Blockly.JavaScript.variableDB_.getName(
+  var variable0 = Blockly.Wiring.variableDB_.getName(
       this.getInputVariable('VAR'), Blockly.Variables.NAME_TYPE);
-  var argument0 = Blockly.JavaScript.valueToCode(this, 'LIST',
-      Blockly.JavaScript.ORDER_ASSIGNMENT) || '[]';
-  var branch0 = Blockly.JavaScript.statementToCode(this, 'DO');
+  var argument0 = Blockly.Wiring.valueToCode(this, 'LIST',
+      Blockly.Wiring.ORDER_ASSIGNMENT) || '[]';
+  var branch0 = Blockly.Wiring.statementToCode(this, 'DO');
   var code;
-  var indexVar = Blockly.JavaScript.variableDB_.getDistinctName(
+  var indexVar = Blockly.Wiring.variableDB_.getDistinctName(
       variable0 + '_index', Blockly.Variables.NAME_TYPE);
   if (argument0.match(/^\w+$/)) {
     branch0 = '  ' + variable0 + ' = ' + argument0 + '[' + indexVar + '];\n' +
@@ -104,7 +104,7 @@ Blockly.JavaScript.controls_forEach = function() {
   } else {
     // The list appears to be more complicated than a simple variable.
     // Cache it to a variable to prevent repeated look-ups.
-    var listVar = Blockly.JavaScript.variableDB_.getDistinctName(
+    var listVar = Blockly.Wiring.variableDB_.getDistinctName(
         variable0 + '_list', Blockly.Variables.NAME_TYPE);
     branch0 = '  ' + variable0 + ' = ' + listVar + '[' + indexVar + '];\n' +
         branch0;
@@ -115,7 +115,7 @@ Blockly.JavaScript.controls_forEach = function() {
   return code;
 };
 
-Blockly.JavaScript.controls_flow_statements = function() {
+Blockly.Wiring.controls_flow_statements = function() {
   // Flow statements: continue, break.
   switch (this.getTitleValue('FLOW')) {
     case 'BREAK':
