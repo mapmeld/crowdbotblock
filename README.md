@@ -20,14 +20,17 @@ In development: a mobile <strong>CrowdBot</strong> which you can watch and repro
 
 <img src="http://i.imgur.com/5rUXc.jpg"/>
 
+The livestream panel includes social media sharing options for the currently-running program, and your own program.
+
+If your livestream URL includes a program ID, it will add that program to the cue.
+
 ## Roadmap
-CrowdBotBlock is based on [CrowdBot](https://github.com/mapmeld/CrowdBot), which let you program an Arduino in C. The roadmap to making similar and then brand new features:
 
 Future plans:
 <ul>
-<li>Share a livestream link which adds your program to the cure</li>
+<li>Set up environment for mobile Crowdbot</li>
 <li>Tweet or e-mail users when their code runs</li>
-<li>Archive each user's code and results</li>
+<li>Archive each user's code and data</li>
 </ul>
 
 # About Blockly
