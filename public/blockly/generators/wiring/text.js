@@ -216,6 +216,30 @@ Blockly.Wiring.servo_move = function(){
   var argument1 = Blockly.Wiring.valueToCode(this, 'NUM2', Blockly.Wiring.ORDER_NONE) || '\'\'';
   return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
+
+Blockly.Wiring.drive_init = {
+  return 'var leftMotor = 3;\npinMode(leftMotor,OUTPUT);\nvar rightMotor = 11;\npinMode(rightMotor,OUTPUT);\nvar leftDir = 12;var rightDir = 13;\npinMode(leftDir,OUTPUT);\npinMode(rightDir,OUTPUT);\n';
+};
+Blockly.Wiring.drive_fwd = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'digitalWrite(leftDir,HIGH);\ndigitalWrite(rightDir,HIGH);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
+};
+Blockly.Wiring.drive_rev = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'digitalWrite(leftDir,LOW);\ndigitalWrite(rightDir,LOW);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
+};
+Blockly.Wiring.drive_left = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'digitalWrite(leftDir,LOW);\ndigitalWrite(rightDir,HIGH);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
+};
+Blockly.Wiring.drive_right = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'digitalWrite(leftDir,HIGH);\ndigitalWrite(rightDir,LOW);\nanalogWrite(leftMotor,225);\nanalogWrite(rightMotor,255);\ndelay(' + argument0 * 1000 + ');\nanalogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
+};
+Blockly.Wiring.drive_stop = {
+  return 'analogWrite(leftMotor,0);\nanalogWrite(rightMotor,0);\n';
+};
+
 // Wait callback
 Blockly.Wiring.wait = function() {
   var argument0 = Blockly.Wiring.valueToCode(this, 'NUM', Blockly.Wiring.ORDER_NONE) || '\'\'';

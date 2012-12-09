@@ -216,6 +216,30 @@ Blockly.JavaScript.servo_move = function(){
   var argument1 = Blockly.JavaScript.valueToCode(this, 'NUM2', Blockly.JavaScript.ORDER_NONE) || '\'\'';
   return 'servo' + (argument0*1) + '.move(' + (argument1*1) + ');\n';
 };
+
+Blockly.JavaScript.drive_init = {
+  return 'var leftMotor = new five.Motor({ pin: 3 });\nvar rightMotor = new five.Motor({ pin: 11 });\nboard.repl.inject({ motor: leftMotor });\nboard.repl.inject({ motor: rightMotor });\n var leftDir = new five.Led({ pin: 12 });\nvar rightDir = new five.Led({ pin: 13 });\n';
+};
+Blockly.JavaScript.drive_fwd = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'leftDir.on();\nrightDir.on();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
+};
+Blockly.JavaScript.drive_rev = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'leftDir.off();\nrightDir.off();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
+};
+Blockly.JavaScript.drive_left = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'leftDir.off();\nrightDir.on();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
+};
+Blockly.JavaScript.drive_right = {
+  var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+  return 'leftDir.on();\nrightDir.off();\nleftMotor.start();\nrightMotor.start();\nboard.wait( ' + argument0 * 1000 + ', function(){\n  leftMotor.stop();\n  rightMotor.stop();\n});\n';
+};
+Blockly.JavaScript.drive_stop = {
+  return 'leftMotor.stop();\n  rightMotor.stop();\n';
+};
+
 // Wait callback
 Blockly.JavaScript.wait = function() {
   var argument0 = Blockly.JavaScript.valueToCode(this, 'NUM', Blockly.JavaScript.ORDER_NONE) || '\'\'';

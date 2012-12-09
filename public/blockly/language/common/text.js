@@ -362,6 +362,77 @@ Blockly.Language.selectled = {
   }
 };*/
 
+Blockly.Language.drive_init = {
+  category: "Drive",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Set up Drive Motors");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Set up Drive Motors");
+  }
+};
+Blockly.Language.drive_fwd = {
+  category: "Drive",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Drive forward");
+    this.appendInput('for', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Drive forward");
+  }
+};
+Blockly.Language.drive_rev = {
+  category: "Drive",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Drive backward");
+    this.appendInput('for', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Drive backward");
+  }
+};
+Blockly.Language.drive_left = {
+  category: "Drive",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Turn left");
+    this.appendInput('for', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Turn left");
+  }
+};
+Blockly.Language.drive_right = {
+  category: "Drive",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Turn right");
+    this.appendInput('for', Blockly.INPUT_VALUE, 'NUM', Number);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Turn right");
+  }
+};
+Blockly.Language.drive_stop = {
+  category: "Drive",
+  helpUrl: Blockly.LANG_TEXT_PRINT_HELPURL,
+  init: function(){
+    this.setColour(250);
+    this.appendTitle("Stop");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("Stop");
+  }
+};
+
 // Servo init, min, max, center, move, sweep
 /*Blockly.Language.servo_init = {
   category: "Motor",
