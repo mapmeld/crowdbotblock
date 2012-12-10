@@ -35,12 +35,12 @@ div.container
           img(src='http://i.imgur.com/tQRIi.png', width='80', title='See Blocks', alt='See Blocks')
           span View Blocks
       h4#codename Program: #{program.name}
-      -if(#{program.js} != 0)
+      - if (#{program.js} != 0)
         div#codecontainer
           pre#livecode(class="brush: js") #{program.js}
         div#wiringcontainer(style="display:none;")
           pre#livewiringcode(class="brush: c")
-      -else
+      - else
         div#codecontainer(style="display:none;")
           pre#livecode(class="brush: js")
         div#wiringcontainer
