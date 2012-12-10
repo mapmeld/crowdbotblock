@@ -5,9 +5,11 @@ var mongoose = require('mongoose'),
 var BlockCodeSchema = new Schema({
   js: String,
   xml: String,
+  wiring: String,
   status: String,
   name: String,
-  updated: Date
+  updated: Date,
+  ide: String
 });
 
 var blockcode = mongoose.model('blockcode', BlockCodeSchema);

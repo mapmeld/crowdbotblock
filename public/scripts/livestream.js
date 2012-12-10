@@ -22,13 +22,28 @@ socket.on('newprogram', function(data){
       document.getElementById("wait").style.display = "none";
     }
   }
+  if(data.js && data.js.length){
+    document.getElementById("codecontainer").style.display = "block";
+    document.getElementById("wiringcontainer").style.display = "none";    
+    document.getElementById("codecontainer").innerHTML = "<pre id='livecode' class='brush: js'>" + data.js + "</pre>";
+  }
+  else{
+    document.getElementById("codecontainer").style.display = "none";
+    document.getElementById("wiringcontainer").style.display = "block";
+    document.getElementById("wiringcontainer").innerHTML = "<pre id='livewiring' class='brush: c'>" + data.wiring + "</pre>";
+  }
+
   document.getElementById("codename").innerHTML = data.name;
-  document.getElementById("codecontainer").innerHTML = "<pre id='livecode' class='brush: js'>" + data.js + "</pre>";
   document.getElementById("blockview").href = "/blockly/demos/code/index.html?id=" + data.id;
   document.getElementById("blocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + data.id) + "&text=Drop%20code%20into%20a%20livestreamed%20Arduino%20robot!%20";
 
   setTimeout(function(){
-    SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
+    if(data.js && data.js.length){
+      SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
+    }
+    else{
+      SyntaxHighlighter.highlight(document.getElementById("livewiring"),document.getElementById("livewiring"));    
+    }
   }, 250);
 });
 socket.on('newdata', function(data){
@@ -38,6 +53,12 @@ socket.on('newdata', function(data){
   document.getElementById("livedata").appendChild(line);
 });
 setTimeout(function(){
-  SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
-  SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
+  if(document.getElementById("livecode").style.display == "block"){
+    SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
+    SyntaxHighlighter.highlight(document.getElementById("livecode"),document.getElementById("livecode"));
+  }
+  else{
+    SyntaxHighlighter.highlight(document.getElementById("livewiring"),document.getElementById("livewiring"));
+    SyntaxHighlighter.highlight(document.getElementById("livewiring"),document.getElementById("livewiring"));
+  }
 }, 250);
