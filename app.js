@@ -113,6 +113,10 @@ var init = exports.init = function (config) {
     });
   });
 
+  app.get('/textcode', function(req, res){
+    res.render('textcode');  
+  });
+
   app.post('/textcode', function(req, res){
     var code = req.body.wiring;
     var codename = replaceAll(replaceAll(req.body.name, "<", "&lt;"), ">", "&gt;");

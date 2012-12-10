@@ -1,0 +1,88 @@
+head
+  title CrowdBot Coding
+  script(type="text/javascript", src="/scripts/codemirror.js")
+  script(type="text/javascript", src="/scripts/clike.js")
+  script(type="text/javascript", src="/scripts/textcode.js")
+  link(type="text/css", rel="stylesheet", href="/stylesheets/textcode.css")
+  link(type="text/css", rel="stylesheet", href="/stylesheets/codemirror.css")
+
+body(onload="init()")
+  table
+    tr
+      td
+        form#submitcode(accept-charset="UTF-8", action="/textcode", method="post")
+          h1 Program CrowdBot
+          h3(style="display:inline;margin-right:20px;") Tweetable Sketch Name
+          input(name="sketchname", width="300")
+          h3 Optional contact: Twitter (@mapmeld) or e-mail (you@example.com)
+          input(name="identify", width="400", size="30")
+          br
+          h3(style="display:inline;margin-right:20px;") Data streaming
+          label
+            input#dostream(type="checkbox", name="dostream", checked="checked")
+            span Stream data?
+          label
+            input#dosend(type="checkbox", name="dosend")
+            span Send data log?
+          h3 Write Sketch or Select
+          select#samples(href='#', onchange='writeSample()')
+            option(value="none") -
+            option(value="blink") Blink Test
+            option(value="sensor") Sensor Test
+            option(value="servo") Motor Test
+            option(value="hello") Stream Test
+            option(value="random") Random Blink
+            option(value="streamer") Data Streamer
+            option(value="current") Current Sketch
+          textarea#sketchplace(name="mysketch", width="400", height="600", rows="18", cols="60")
+          br
+          input(type="submit", value="Send Sketch")
+      td
+        div(style="margin-left:15px;")
+          button(onclick="window.location='/crowdbot?screen=watch';", style="font-size:16pt")
+            img(src="/camera.jpg", style="vertical-align:middle;", height="18pt", width="18pt")
+            span Watch livestream
+          h3 Reference
+          ul.spacedlist
+            li
+              span pinMode( PIN# , INPUT or OUTPUT )
+              br
+              span prepares a pin to read or write information
+            li
+              span digitalWrite( PIN# , HIGH or LOW )
+              br
+              span turns the pin on or off
+            li(style="padding-bottom:5px;border-bottom:1px solid silver;")
+              span delay( milliseconds )
+              br
+              span waits before continuing to the next line
+            li
+              span analogRead( PIN# )
+              br
+              span returns sensor value from 0 (off) to 1024 (100% on)
+            li(style="padding-bottom:5px;border-bottom:1px solid silver;")
+              span digitalRead( PIN# )
+              br
+              span returns sensor value as HIGH or LOW
+            li
+              span #include &lt;Servo.h&gt;
+              br
+              span Servo myservo;
+              br
+              span paste at start of code to allow motor control
+            li
+              span myservo.attach(9);
+              br
+              span Prepare servo motor inside setup
+            li(style="padding-bottom:5px;border-bottom:1px solid silver;")
+              span myservo.write( 0 <= val <= 179 )
+              br
+              span Turn motor to 0-179 degrees
+            li
+              span Serial.begin( 9600 )
+              br
+              span connect computer and Arduino over USB/serial port
+            li
+              span Serial.println( # or "" )
+              br
+              span output a message (number or text) to the computer

@@ -1,0 +1,12 @@
+ul.spacedlist{
+  font-family:courier;
+  list-style:none;
+}
+ul.spacedlist li{
+  margin-bottom:10px;
+}
+#submitcode{
+  border-right:1px solid silver;
+  margin-right:15px;
+  padding-right:15px;
+}
