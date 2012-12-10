@@ -66,10 +66,10 @@ var init = exports.init = function (config) {
   app.get('/livestream', function(req, res){
     blockcode.blockcode.findOne({ status: 'downloaded' }).sort('-updated').exec(function(err, doc){
       if(doc.js && doc.js.length){
-        res.render('livestream', { program: { id: doc._id, name: doc.name, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
+        res.render('livestream', { program: { id: doc._id, name: doc.name, wiring: 0, js: replaceAll(replaceAll(doc.js, "<", "&lt;"), ">", "&gt;") } });
       }
       else{
-        res.render('livestream', { program: { id: doc._id, name: doc.name, wiring: replaceAll(replaceAll(doc.wiring, "<", "&lt;"), ">", "&gt;") } });
+        res.render('livestream', { program: { id: doc._id, name: doc.name, wiring: replaceAll(replaceAll(doc.wiring, "<", "&lt;"), ">", "&gt;"), js: 0 } });
       }
     });
     if(req.query['id']){
