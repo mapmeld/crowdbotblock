@@ -26,15 +26,17 @@ socket.on('newprogram', function(data){
     document.getElementById("codecontainer").style.display = "block";
     document.getElementById("wiringcontainer").style.display = "none";    
     document.getElementById("codecontainer").innerHTML = "<pre id='livecode' class='brush: js'>" + data.js + "</pre>";
+    document.getElementById("blockview").style.display = "block";
+    document.getElementById("blockview").href = "/blockly/demos/code/index.html?id=" + data.id;
   }
   else{
     document.getElementById("codecontainer").style.display = "none";
     document.getElementById("wiringcontainer").style.display = "block";
     document.getElementById("wiringcontainer").innerHTML = "<pre id='livewiring' class='brush: c'>" + data.wiring + "</pre>";
+    document.getElementById("blockview").style.display = "none";
   }
 
   document.getElementById("codename").innerHTML = data.name;
-  document.getElementById("blockview").href = "/blockly/demos/code/index.html?id=" + data.id;
   document.getElementById("blocktweet").src = "//platform.twitter.com/widgets/tweet_button.html?url=" + encodeURIComponent("http://crowdbotblock.herokuapp.com/livestream?id=" + data.id) + "&text=Drop%20code%20into%20a%20livestreamed%20Arduino%20robot!%20";
 
   setTimeout(function(){
