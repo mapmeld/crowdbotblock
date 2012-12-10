@@ -46,9 +46,14 @@ div.container
         div#wiringcontainer
           pre#livewiringcode(class="brush: c") #{program.wiring}
       iframe#blocktweet(allowtransparency="true", frameborder="0", scrolling="no", src="//platform.twitter.com/widgets/tweet_button.html?text=Drop%20code%20into%20a%20livestreamed%20Arduino%20robot!%20", style="width:130px;height:20px;float:right;")
-      a#blockview(href="/blockly/demos/code/index.html?id=#{program.id}", target="_blank", style="color:blue;vertical-align:middle;")
-        img(src='http://i.imgur.com/tQRIi.png', width='80', title='See Blocks', alt='See Blocks')
-        span View Blocks
+      - if (program.js != 0)
+        a#blockview(href="/blockly/demos/code/index.html?id=#{program.id}", target="_blank", style="color:blue;vertical-align:middle;")
+          img(src='http://i.imgur.com/tQRIi.png', width='80', title='See Blocks', alt='See Blocks')
+          span View Blocks
+      - else
+        a#blockview(href="/blockly/demos/code/index.html?id=#{program.id}", target="_blank", style="color:blue;vertical-align:middle;display:none;")
+          img(src='http://i.imgur.com/tQRIi.png', width='80', title='See Blocks', alt='See Blocks')
+          span View Blocks
       p
         span Updated in realtime by&nbsp;
         a(href="http://socket.io", target="_blank") socket.io
