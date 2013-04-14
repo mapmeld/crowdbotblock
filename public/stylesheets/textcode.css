@@ -10,3 +10,6 @@ ul.spacedlist li{
   margin-right:15px;
   padding-right:15px;
 }
+textarea{
+  display: block;
+}
