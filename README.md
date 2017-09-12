@@ -1,5 +1,7 @@
 # About CrowdBotBlock
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mapmeld/crowdbotblock.svg)](https://greenkeeper.io/)
+
 ## First, write your code:
 
 Suppose you put some blocks together like this:
